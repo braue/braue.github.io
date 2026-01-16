@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Security on Braue Brief</title>
+    <link>https://example.org/protocols/security/</link>
+    <description>Recent content in Security on Braue Brief</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <atom:link href="https://example.org/protocols/security/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>IPSec</title>
+      <link>https://example.org/protocols/security/ipsec/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://example.org/protocols/security/ipsec/</guid>
+      <description>&lt;h1 id=&#34;ipsec-internet-protocol-security&#34;&gt;IPSec (Internet Protocol Security)&lt;a class=&#34;anchor&#34; href=&#34;#ipsec-internet-protocol-security&#34;&gt;#&lt;/a&gt;&lt;/h1&gt;&#xA;&lt;img src=&#34;https://example.org/images/ipsec.jpeg&#34; alt=&#34;IPSec Tunnel Diagram&#34; width=&#34;80%&#34;&gt;&#xA;&lt;h2 id=&#34;overview&#34;&gt;Overview&lt;a class=&#34;anchor&#34; href=&#34;#overview&#34;&gt;#&lt;/a&gt;&lt;/h2&gt;&#xA;&lt;p&gt;&lt;strong&gt;IPSec (Internet Protocol Security)&lt;/strong&gt; is a &lt;strong&gt;suite of protocols&lt;/strong&gt; used to secure IP communications by &lt;strong&gt;authenticating, encrypting, and ensuring integrity&lt;/strong&gt; of IP packets.&lt;/p&gt;&#xA;&lt;p&gt;IPSec operates at the &lt;strong&gt;network layer (Layer 3)&lt;/strong&gt; and is commonly used to build &lt;strong&gt;VPNs (Virtual Private Networks)&lt;/strong&gt;, secure site-to-site links, and protect sensitive data traversing untrusted networks such as the internet.&lt;/p&gt;&#xA;&lt;p&gt;It is widely deployed in &lt;strong&gt;enterprise networking, industrial control systems, cloud connectivity, and remote access solutions&lt;/strong&gt;.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>SSH</title>
+      <link>https://example.org/protocols/security/ssh/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://example.org/protocols/security/ssh/</guid>
+      <description>&lt;h1 id=&#34;ssh-secure-shell&#34;&gt;SSH (Secure Shell)&lt;a class=&#34;anchor&#34; href=&#34;#ssh-secure-shell&#34;&gt;#&lt;/a&gt;&lt;/h1&gt;&#xA;&lt;img src=&#34;https://example.org/images/ssh.png&#34; alt=&#34;SSH Secure Connection Diagram&#34; width=&#34;80%&#34;&gt;&#xA;&lt;h2 id=&#34;overview&#34;&gt;Overview&lt;a class=&#34;anchor&#34; href=&#34;#overview&#34;&gt;#&lt;/a&gt;&lt;/h2&gt;&#xA;&lt;p&gt;&lt;strong&gt;SSH (Secure Shell)&lt;/strong&gt; is a &lt;strong&gt;cryptographic network protocol&lt;/strong&gt; used to securely access and manage remote systems over an unsecured network. It provides &lt;strong&gt;confidentiality, integrity, and authentication&lt;/strong&gt; for command-line access, file transfer, and tunneling.&lt;/p&gt;&#xA;&lt;p&gt;SSH operates at the &lt;strong&gt;application layer (Layer 7)&lt;/strong&gt; and has largely replaced insecure protocols such as &lt;strong&gt;Telnet, rlogin, and rsh&lt;/strong&gt;. It is foundational in &lt;strong&gt;Linux/Unix administration, network device management, automation, and secure file transfer&lt;/strong&gt;.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>TLS</title>
+      <link>https://example.org/protocols/security/tls/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://example.org/protocols/security/tls/</guid>
+      <description>&lt;h1 id=&#34;tls-transport-layer-security&#34;&gt;TLS (Transport Layer Security)&lt;a class=&#34;anchor&#34; href=&#34;#tls-transport-layer-security&#34;&gt;#&lt;/a&gt;&lt;/h1&gt;&#xA;&lt;img src=&#34;https://example.org/images/tls.png&#34; alt=&#34;TLS Handshake Diagram&#34; width=&#34;80%&#34;&gt;&#xA;&lt;h2 id=&#34;overview&#34;&gt;Overview&lt;a class=&#34;anchor&#34; href=&#34;#overview&#34;&gt;#&lt;/a&gt;&lt;/h2&gt;&#xA;&lt;p&gt;&lt;strong&gt;TLS (Transport Layer Security)&lt;/strong&gt; is a &lt;strong&gt;cryptographic protocol&lt;/strong&gt; that provides &lt;strong&gt;confidentiality, integrity, and authentication&lt;/strong&gt; for data exchanged over a network. It is the successor to SSL and is the foundation of secure communications on the internet and in enterprise networks.&lt;/p&gt;&#xA;&lt;p&gt;TLS operates &lt;strong&gt;above the transport layer (Layer 4)&lt;/strong&gt; and is most commonly used to secure application protocols such as &lt;strong&gt;HTTPS, LDAP, SMTP, IMAP, MQTT, and APIs&lt;/strong&gt;. It ensures data is encrypted in transit and protected from eavesdropping and tampering.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

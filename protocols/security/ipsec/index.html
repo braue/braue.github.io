@@ -1,0 +1,1183 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+<head>
+  <!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="IPSec (Internet Protocol Security)# Overview# IPSec (Internet Protocol Security) is a suite of protocols used to secure IP communications by authenticating, encrypting, and ensuring integrity of IP packets.
+IPSec operates at the network layer (Layer 3) and is commonly used to build VPNs (Virtual Private Networks), secure site-to-site links, and protect sensitive data traversing untrusted networks such as the internet.
+It is widely deployed in enterprise networking, industrial control systems, cloud connectivity, and remote access solutions.
+">
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#343a40">
+<meta name="color-scheme" content="light dark"><meta property="og:url" content="https://example.org/protocols/security/ipsec/">
+  <meta property="og:site_name" content="Braue Brief">
+  <meta property="og:title" content="IPSec">
+  <meta property="og:description" content="IPSec (Internet Protocol Security)# Overview# IPSec (Internet Protocol Security) is a suite of protocols used to secure IP communications by authenticating, encrypting, and ensuring integrity of IP packets.
+IPSec operates at the network layer (Layer 3) and is commonly used to build VPNs (Virtual Private Networks), secure site-to-site links, and protect sensitive data traversing untrusted networks such as the internet.
+It is widely deployed in enterprise networking, industrial control systems, cloud connectivity, and remote access solutions.">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="protocols">
+
+
+  <meta itemprop="name" content="IPSec">
+  <meta itemprop="description" content="IPSec (Internet Protocol Security)# Overview# IPSec (Internet Protocol Security) is a suite of protocols used to secure IP communications by authenticating, encrypting, and ensuring integrity of IP packets.
+IPSec operates at the network layer (Layer 3) and is commonly used to build VPNs (Virtual Private Networks), secure site-to-site links, and protect sensitive data traversing untrusted networks such as the internet.
+It is widely deployed in enterprise networking, industrial control systems, cloud connectivity, and remote access solutions.">
+  <meta itemprop="wordCount" content="598">
+
+<title>IPSec | Braue Brief</title>
+<link rel="icon" href="/favicon.png" >
+<link rel="manifest" href="/manifest.json">
+<link rel="canonical" href="https://example.org/protocols/security/ipsec/">
+<link rel="stylesheet" href="/book.min.cc2c524ed250aac81b23d1f4af87344917b325208841feca0968fe450f570575.css" integrity="sha256-zCxSTtJQqsgbI9H0r4c0SRezJSCIQf7KCWj&#43;RQ9XBXU=" crossorigin="anonymous">
+
+
+  <script defer src="/fuse.min.js"></script>
+  <script defer src="/en.search.min.58f0d0b90f31441395751551f3226557b1b151c56cf8ecba53e0c385d3cb5cfc.js" integrity="sha256-WPDQuQ8xRBOVdRVR8yJlV7GxUcVs&#43;Oy6U&#43;DDhdPLXPw=" crossorigin="anonymous"></script>
+
+
+
+  
+</head>
+<body dir="ltr" class="book-kind-page book-type-protocols">
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    
+<aside class="book-menu">
+  <div class="book-menu-content">
+    
+  <nav>
+<h2 class="book-brand">
+  <a class="flex align-center" href="/"><span>Braue Brief</span>
+  </a>
+</h2>
+
+
+<div class="book-search hidden">
+  <input id="book-search-input" type="text" 
+    placeholder="Search"
+    aria-label="Search"
+    maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+<script>document.querySelector(".book-search").classList.remove("hidden")</script>
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-540ef7a0b502cbd8589d7dc5f6d29e30" class="toggle" checked />
+    <label for="section-540ef7a0b502cbd8589d7dc5f6d29e30" class="flex">
+      <a href="/protocols/" class="">
+        Protocols</a>
+      <img src="/icons/chevron-right.svg" class="book-icon" alt="Expand" />
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-7aeb60c468c1e706c41b9630a0be8b31" class="toggle"  />
+    <label for="section-7aeb60c468c1e706c41b9630a0be8b31" class="flex">
+      <a role="button" class="">
+        Data</a>
+      <img src="/icons/chevron-right.svg" class="book-icon" alt="Expand" />
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-2712054b811b9c4066797d618455ea66" class="toggle"  />
+    <label for="section-2712054b811b9c4066797d618455ea66" class="flex">
+      <a role="button" class="">
+        Authentication</a>
+      <img src="/icons/chevron-right.svg" class="book-icon" alt="Expand" />
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/protocols/auth/ldap/" class="">
+      LDAP</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/protocols/auth/radius/" class="">
+      RADIUS</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/protocols/auth/tacacs/" class="">
+      TACACS&#43;</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-bb76d159f586053acd77b84963bad581" class="toggle"  />
+    <label for="section-bb76d159f586053acd77b84963bad581" class="flex">
+      <a role="button" class="">
+        Network</a>
+      <img src="/icons/chevron-right.svg" class="book-icon" alt="Expand" />
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/protocols/network/arp/" class="">
+      ARP</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/protocols/network/dhcp/" class="">
+      DHCP</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/protocols/network/icmp/" class="">
+      ICMP</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/protocols/network/lldp/" class="">
+      LLDP</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/protocols/network/rstp/" class="">
+      RSTP</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-52fac273d5a73441b044614e859cc631" class="toggle" checked />
+    <label for="section-52fac273d5a73441b044614e859cc631" class="flex">
+      <a role="button" class="">
+        Security</a>
+      <img src="/icons/chevron-right.svg" class="book-icon" alt="Expand" />
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/protocols/security/ipsec/" class="active">
+      IPSec</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/protocols/security/ssh/" class="">
+      SSH</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/protocols/security/tls/" class="">
+      TLS</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-2ca7c49d323a716609821fbcd038cd89" class="toggle"  />
+    <label for="section-2ca7c49d323a716609821fbcd038cd89" class="flex">
+      <a href="/topologies/" class="">
+        Topologies</a>
+      <img src="/icons/chevron-right.svg" class="book-icon" alt="Expand" />
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-d341f0368fbffbeeaee8bc6e405a1275" class="toggle"  />
+    <label for="section-d341f0368fbffbeeaee8bc6e405a1275" class="flex">
+      <a href="/applications/" class="">
+        Applications</a>
+      <img src="/icons/chevron-right.svg" class="book-icon" alt="Expand" />
+    </label>
+  
+
+          
+  <ul>
+    
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a>
+      Flisr</a>
+  
+
+          
+  <ul>
+    
+      
+    
+      
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-2d1bca95a6e88f0dabfc2163623d2f1b" class="toggle"  />
+    <label for="section-2d1bca95a6e88f0dabfc2163623d2f1b" class="flex">
+      <a href="/equipment/" class="">
+        Equipment</a>
+      <img src="/icons/chevron-right.svg" class="book-icon" alt="Expand" />
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a>
+      Ied</a>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a>
+      Automation</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a>
+      Network</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a>
+      Relay</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a>
+      Power</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-9cf0a8ab62fa53529f10aae148d0e1b7" class="toggle"  />
+    <label for="section-9cf0a8ab62fa53529f10aae148d0e1b7" class="flex">
+      <a href="/ports/" class="">
+        Ports</a>
+      <img src="/icons/chevron-right.svg" class="book-icon" alt="Expand" />
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-c339f8c41feff0073df413ab650e7237" class="toggle"  />
+    <label for="section-c339f8c41feff0073df413ab650e7237" class="flex">
+      <a role="button" class="">
+        Copper</a>
+      <img src="/icons/chevron-right.svg" class="book-icon" alt="Expand" />
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/ports/copper/bnc/" class="">
+      BNC</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/ports/copper/m12/" class="">
+      M12</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/ports/copper/rj45/" class="">
+      RJ45</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-22309e31bc390317583f8b1ea399757e" class="toggle"  />
+    <label for="section-22309e31bc390317583f8b1ea399757e" class="flex">
+      <a role="button" class="">
+        Fiber</a>
+      <img src="/icons/chevron-right.svg" class="book-icon" alt="Expand" />
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/ports/fiber/fc/" class="">
+      FC</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/ports/fiber/lc/" class="">
+      LC</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/ports/fiber/sc/" class="">
+      SC</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/ports/fiber/sfp/" class="">
+      SFP</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/ports/fiber/st/" class="">
+      ST</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-33e1dce60a06b60153df57b8a974ba44" class="toggle"  />
+    <label for="section-33e1dce60a06b60153df57b8a974ba44" class="flex">
+      <a role="button" class="">
+        Serial</a>
+      <img src="/icons/chevron-right.svg" class="book-icon" alt="Expand" />
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/ports/serial/db25/" class="">
+      DB25</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/ports/serial/db9/" class="">
+      DB9</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/ports/serial/rs/" class="">
+      RS</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/ports/serial/usb/" class="">
+      USB</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+
+
+
+  </div>
+</aside>
+ 
+
+    <div class="book-page">
+      <header class="book-header hidden">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/icons/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <h3>IPSec</h3>
+
+  <label for="toc-control">
+    
+    <img src="/icons/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+  </label>
+</div>
+
+
+  
+  <aside class="hidden">
+    
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#overview">Overview</a></li>
+    <li><a href="#terminology">Terminology</a></li>
+    <li><a href="#practical-use-cases">Practical Use-Cases</a></li>
+    <li><a href="#protocol-characteristics">Protocol Characteristics</a>
+      <ul>
+        <li><a href="#key-components">Key Components</a></li>
+        <li><a href="#key-parameters">Key Parameters</a></li>
+        <li><a href="#operating-modes">Operating Modes</a></li>
+        <li><a href="#best-practices">Best Practices</a></li>
+        <li><a href="#common-pitfalls">Common Pitfalls</a></li>
+      </ul>
+    </li>
+    <li><a href="#ipsec-packet-flow-overview">IPSec Packet Flow Overview</a></li>
+    <li><a href="#troubleshooting--failure-modes">Troubleshooting &amp; Failure Modes</a>
+      <ul>
+        <li><a href="#symptoms">Symptoms</a></li>
+        <li><a href="#root-causes">Root Causes</a></li>
+        <li><a href="#fixes--workarounds">Fixes / Workarounds</a></li>
+        <li><a href="#field-test-methods">Field Test Methods</a></li>
+      </ul>
+    </li>
+    <li><a href="#standards--references">Standards &amp; References</a></li>
+  </ul>
+</nav>
+
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+  <article class="markdown book-article"><h1 id="ipsec-internet-protocol-security">IPSec (Internet Protocol Security)<a class="anchor" href="#ipsec-internet-protocol-security">#</a></h1>
+<img src="/images/ipsec.jpeg" alt="IPSec Tunnel Diagram" width="80%">
+<h2 id="overview">Overview<a class="anchor" href="#overview">#</a></h2>
+<p><strong>IPSec (Internet Protocol Security)</strong> is a <strong>suite of protocols</strong> used to secure IP communications by <strong>authenticating, encrypting, and ensuring integrity</strong> of IP packets.</p>
+<p>IPSec operates at the <strong>network layer (Layer 3)</strong> and is commonly used to build <strong>VPNs (Virtual Private Networks)</strong>, secure site-to-site links, and protect sensitive data traversing untrusted networks such as the internet.</p>
+<p>It is widely deployed in <strong>enterprise networking, industrial control systems, cloud connectivity, and remote access solutions</strong>.</p>
+<h2 id="terminology">Terminology<a class="anchor" href="#terminology">#</a></h2>
+<ul>
+<li><strong>SA (Security Association)</strong> — a unidirectional logical connection defining how traffic is secured.</li>
+<li><strong>IKE (Internet Key Exchange)</strong> — protocol used to negotiate SAs and cryptographic parameters.</li>
+<li><strong>ESP (Encapsulating Security Payload)</strong> — provides encryption, integrity, and authentication.</li>
+<li><strong>AH (Authentication Header)</strong> — provides integrity and authentication only (rarely used).</li>
+<li><strong>Tunnel Mode</strong> — encrypts the entire IP packet (common for VPNs).</li>
+<li><strong>Transport Mode</strong> — encrypts only the payload of the IP packet.</li>
+<li><strong>SPD (Security Policy Database)</strong> — rules defining which traffic is protected.</li>
+<li><strong>SAD (Security Association Database)</strong> — active security associations.</li>
+</ul>
+<h2 id="practical-use-cases">Practical Use-Cases<a class="anchor" href="#practical-use-cases">#</a></h2>
+<ul>
+<li>Site-to-site VPNs between corporate networks.</li>
+<li>Remote access VPNs for users and administrators.</li>
+<li>Secure communication over untrusted or public networks.</li>
+<li>Protecting SCADA and industrial traffic across WAN links.</li>
+<li>Cloud-to-on-prem and cloud-to-cloud connectivity.</li>
+<li>Compliance-driven encryption of IP traffic.</li>
+</ul>
+<h2 id="protocol-characteristics">Protocol Characteristics<a class="anchor" href="#protocol-characteristics">#</a></h2>
+<h3 id="key-components">Key Components<a class="anchor" href="#key-components">#</a></h3>
+<ul>
+<li><strong>IKEv1 / IKEv2</strong> — key exchange and SA negotiation.</li>
+<li><strong>ESP (IP protocol 50)</strong> — primary data protection mechanism.</li>
+<li><strong>AH (IP protocol 51)</strong> — integrity/authentication only.</li>
+<li><strong>NAT Traversal (NAT-T)</strong> — encapsulates IPSec in UDP for NAT compatibility.</li>
+</ul>
+<h3 id="key-parameters">Key Parameters<a class="anchor" href="#key-parameters">#</a></h3>
+<ul>
+<li><strong>Ports / Protocols</strong>:
+<ul>
+<li>UDP 500 — IKE</li>
+<li>UDP 4500 — IPSec NAT-T</li>
+<li>IP Protocol 50 — ESP</li>
+<li>IP Protocol 51 — AH</li>
+</ul>
+</li>
+<li><strong>Encryption Algorithms</strong>: AES, 3DES (legacy)</li>
+<li><strong>Integrity Algorithms</strong>: SHA-1 (legacy), SHA-2</li>
+<li><strong>Authentication</strong>: Pre-Shared Keys (PSK), Certificates (X.509)</li>
+<li><strong>Key Exchange</strong>: Diffie-Hellman groups</li>
+</ul>
+<h3 id="operating-modes">Operating Modes<a class="anchor" href="#operating-modes">#</a></h3>
+<table>
+  <thead>
+      <tr>
+          <th>Mode</th>
+          <th>Description</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>Tunnel Mode</strong></td>
+          <td>Encrypts entire IP packet; most common for VPNs</td>
+      </tr>
+      <tr>
+          <td><strong>Transport Mode</strong></td>
+          <td>Encrypts payload only; used host-to-host</td>
+      </tr>
+  </tbody>
+</table>
+<h3 id="best-practices">Best Practices<a class="anchor" href="#best-practices">#</a></h3>
+<ul>
+<li>Prefer <strong>IKEv2</strong> over IKEv1.</li>
+<li>Use <strong>strong encryption</strong> (AES-GCM, SHA-256 or better).</li>
+<li>Use certificate-based authentication where possible.</li>
+<li>Enable Perfect Forward Secrecy (PFS).</li>
+<li>Regularly rotate keys and certificates.</li>
+<li>Limit IPSec policies to only required traffic.</li>
+</ul>
+<h3 id="common-pitfalls">Common Pitfalls<a class="anchor" href="#common-pitfalls">#</a></h3>
+<ul>
+<li>NAT issues without NAT-T enabled.</li>
+<li>Mismatched encryption or authentication parameters.</li>
+<li>Incorrect traffic selectors causing dropped packets.</li>
+<li>Certificate expiration or trust chain failures.</li>
+<li>Performance impact due to encryption overhead.</li>
+<li>Difficulty troubleshooting encrypted traffic.</li>
+</ul>
+<h2 id="ipsec-packet-flow-overview">IPSec Packet Flow Overview<a class="anchor" href="#ipsec-packet-flow-overview">#</a></h2>
+<table>
+  <thead>
+      <tr>
+          <th>Phase</th>
+          <th>Description</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>IKE Phase 1</strong></td>
+          <td>Establishes secure control channel and authenticates peers</td>
+      </tr>
+      <tr>
+          <td><strong>IKE Phase 2</strong></td>
+          <td>Negotiates IPSec SAs for data traffic</td>
+      </tr>
+      <tr>
+          <td><strong>Data Transfer</strong></td>
+          <td>Encrypted traffic exchanged using ESP</td>
+      </tr>
+      <tr>
+          <td><strong>Rekeying</strong></td>
+          <td>Periodic renegotiation of keys and SAs</td>
+      </tr>
+      <tr>
+          <td><strong>Teardown</strong></td>
+          <td>SAs expire or are explicitly deleted</td>
+      </tr>
+  </tbody>
+</table>
+<h2 id="troubleshooting--failure-modes">Troubleshooting &amp; Failure Modes<a class="anchor" href="#troubleshooting--failure-modes">#</a></h2>
+<h3 id="symptoms">Symptoms<a class="anchor" href="#symptoms">#</a></h3>
+<ul>
+<li>VPN tunnel fails to establish.</li>
+<li>Tunnel is up but no traffic passes.</li>
+<li>Intermittent connectivity drops.</li>
+<li>Slow throughput or high latency.</li>
+<li>Authentication or key negotiation errors.</li>
+</ul>
+<h3 id="root-causes">Root Causes<a class="anchor" href="#root-causes">#</a></h3>
+<ul>
+<li>Mismatched IKE/IPSec parameters.</li>
+<li>Firewall blocking required ports or protocols.</li>
+<li>NAT devices interfering with ESP traffic.</li>
+<li>Incorrect routing or traffic selectors.</li>
+<li>Expired or invalid certificates.</li>
+<li>MTU or fragmentation issues.</li>
+</ul>
+<h3 id="fixes--workarounds">Fixes / Workarounds<a class="anchor" href="#fixes--workarounds">#</a></h3>
+<ul>
+<li>Verify encryption, hashing, and DH group settings on both peers.</li>
+<li>Ensure UDP 500 and 4500 are allowed through firewalls.</li>
+<li>Enable NAT-T when NAT is present.</li>
+<li>Check routing and protected subnets.</li>
+<li>Adjust MTU or enable fragmentation handling.</li>
+<li>Review logs for IKE negotiation failures.</li>
+</ul>
+<h3 id="field-test-methods">Field Test Methods<a class="anchor" href="#field-test-methods">#</a></h3>
+<ul>
+<li>Device logs (<code>ike</code>, <code>ipsec</code>, or VPN debug logs).</li>
+<li>Packet capture (verify IKE/ESP negotiation).</li>
+<li>Test connectivity before and after tunnel establishment.</li>
+<li>Validate routing tables and traffic selectors.</li>
+<li>Use diagnostic commands (<code>show vpn</code>, <code>show ipsec sa</code>).</li>
+</ul>
+<h2 id="standards--references">Standards &amp; References<a class="anchor" href="#standards--references">#</a></h2>
+<ul>
+<li><strong>RFC 4301</strong> — IPSec Architecture</li>
+<li><strong>RFC 7296</strong> — IKEv2</li>
+<li><strong>RFC 3947 / 3948</strong> — NAT Traversal</li>
+<li><strong>NIST SP 800-77</strong> — Guide to IPSec VPNs</li>
+<li><strong>Vendor Documentation</strong> — platform-specific IPSec implementations</li>
+</ul>
+</article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+<div>
+
+</div>
+
+<div>
+
+</div>
+
+</div>
+
+
+
+  
+
+
+
+  
+  
+  
+  <div class="flex flex-wrap justify-between">
+    <span>
+    
+      <a href="/protocols/network/rstp/" class="flex align-center">
+        <img src="/icons/backward.svg" class="book-icon" alt="Backward" />
+        <span>RSTP</span>
+      </a>
+    
+    </span>
+    <span>
+    
+      <a href="/protocols/security/ssh/" class="flex align-center">
+        <span>SSH</span>
+        <img src="/icons/forward.svg" class="book-icon" alt="Forward" />
+      </a>
+    
+    </span>
+  </div>
+  
+
+
+ 
+        
+  
+ 
+        
+        
+  
+ 
+        
+  
+  
+    <script>(function(){document.querySelectorAll("pre:has(code)").forEach(e=>{e.addEventListener("click",e.focus),e.addEventListener("copy",function(t){if(t.preventDefault(),navigator.clipboard){const t=window.getSelection().toString()||e.textContent;navigator.clipboard.writeText(t)}})})})()</script>
+  
+
+      </footer>
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+  
+  <aside class="book-toc">
+    <div class="book-toc-content">
+      
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#overview">Overview</a></li>
+    <li><a href="#terminology">Terminology</a></li>
+    <li><a href="#practical-use-cases">Practical Use-Cases</a></li>
+    <li><a href="#protocol-characteristics">Protocol Characteristics</a>
+      <ul>
+        <li><a href="#key-components">Key Components</a></li>
+        <li><a href="#key-parameters">Key Parameters</a></li>
+        <li><a href="#operating-modes">Operating Modes</a></li>
+        <li><a href="#best-practices">Best Practices</a></li>
+        <li><a href="#common-pitfalls">Common Pitfalls</a></li>
+      </ul>
+    </li>
+    <li><a href="#ipsec-packet-flow-overview">IPSec Packet Flow Overview</a></li>
+    <li><a href="#troubleshooting--failure-modes">Troubleshooting &amp; Failure Modes</a>
+      <ul>
+        <li><a href="#symptoms">Symptoms</a></li>
+        <li><a href="#root-causes">Root Causes</a></li>
+        <li><a href="#fixes--workarounds">Fixes / Workarounds</a></li>
+        <li><a href="#field-test-methods">Field Test Methods</a></li>
+      </ul>
+    </li>
+    <li><a href="#standards--references">Standards &amp; References</a></li>
+  </ul>
+</nav>
+
+
+
+    </div>
+  </aside>
+  
+ 
+  </main>
+
+  
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

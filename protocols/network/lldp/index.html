@@ -1,0 +1,1161 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+<head>
+  <!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="LLDP (Link Layer Discovery Protocol)# Overview# LLDP (Link Layer Discovery Protocol) is a vendor-neutral, Layer 2 discovery protocol used by network devices to advertise and discover information about directly connected neighbors.
+LLDP allows switches, routers, firewalls, servers, and industrial devices to exchange identity, capability, and configuration information. It is widely used for topology discovery, network documentation, troubleshooting, and automation.
+Terminology# TLV (Type-Length-Value) — the encoding format used for LLDP information elements. Chassis ID — uniquely identifies the sending device. Port ID — identifies the sending interface. TTL (Time To Live) — how long received LLDP information remains valid. LLDPDU — LLDP Data Unit; the packet exchanged between neighbors. Neighbor Table — locally stored information learned via LLDP. Optional TLVs — additional advertised data such as system name, VLAN, or power info. Practical Use-Cases# Automatic discovery of network topology. Identifying which device and port is connected where. Validating cabling and patching during commissioning. Supporting VoIP phone and access point deployment. Network inventory, documentation, and automation. Troubleshooting miswired or unexpected connections. Protocol Characteristics# Key Parameters# OSI Layer: Layer 2 (Data Link) Transport: Ethernet (no IP required) Multicast Address: 01:80:C2:00:00:0E EtherType: 0x88CC Direction: Bidirectional neighbor advertisements Default Interval: Typically 30 seconds (vendor configurable) TTL: Usually 120 seconds (4× advertisement interval) Mandatory TLVs# LLDP frames must include:
+">
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#343a40">
+<meta name="color-scheme" content="light dark"><meta property="og:url" content="https://example.org/protocols/network/lldp/">
+  <meta property="og:site_name" content="Braue Brief">
+  <meta property="og:title" content="LLDP">
+  <meta property="og:description" content="LLDP (Link Layer Discovery Protocol)# Overview# LLDP (Link Layer Discovery Protocol) is a vendor-neutral, Layer 2 discovery protocol used by network devices to advertise and discover information about directly connected neighbors.
+LLDP allows switches, routers, firewalls, servers, and industrial devices to exchange identity, capability, and configuration information. It is widely used for topology discovery, network documentation, troubleshooting, and automation.
+Terminology# TLV (Type-Length-Value) — the encoding format used for LLDP information elements. Chassis ID — uniquely identifies the sending device. Port ID — identifies the sending interface. TTL (Time To Live) — how long received LLDP information remains valid. LLDPDU — LLDP Data Unit; the packet exchanged between neighbors. Neighbor Table — locally stored information learned via LLDP. Optional TLVs — additional advertised data such as system name, VLAN, or power info. Practical Use-Cases# Automatic discovery of network topology. Identifying which device and port is connected where. Validating cabling and patching during commissioning. Supporting VoIP phone and access point deployment. Network inventory, documentation, and automation. Troubleshooting miswired or unexpected connections. Protocol Characteristics# Key Parameters# OSI Layer: Layer 2 (Data Link) Transport: Ethernet (no IP required) Multicast Address: 01:80:C2:00:00:0E EtherType: 0x88CC Direction: Bidirectional neighbor advertisements Default Interval: Typically 30 seconds (vendor configurable) TTL: Usually 120 seconds (4× advertisement interval) Mandatory TLVs# LLDP frames must include:">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="protocols">
+
+
+  <meta itemprop="name" content="LLDP">
+  <meta itemprop="description" content="LLDP (Link Layer Discovery Protocol)# Overview# LLDP (Link Layer Discovery Protocol) is a vendor-neutral, Layer 2 discovery protocol used by network devices to advertise and discover information about directly connected neighbors.
+LLDP allows switches, routers, firewalls, servers, and industrial devices to exchange identity, capability, and configuration information. It is widely used for topology discovery, network documentation, troubleshooting, and automation.
+Terminology# TLV (Type-Length-Value) — the encoding format used for LLDP information elements. Chassis ID — uniquely identifies the sending device. Port ID — identifies the sending interface. TTL (Time To Live) — how long received LLDP information remains valid. LLDPDU — LLDP Data Unit; the packet exchanged between neighbors. Neighbor Table — locally stored information learned via LLDP. Optional TLVs — additional advertised data such as system name, VLAN, or power info. Practical Use-Cases# Automatic discovery of network topology. Identifying which device and port is connected where. Validating cabling and patching during commissioning. Supporting VoIP phone and access point deployment. Network inventory, documentation, and automation. Troubleshooting miswired or unexpected connections. Protocol Characteristics# Key Parameters# OSI Layer: Layer 2 (Data Link) Transport: Ethernet (no IP required) Multicast Address: 01:80:C2:00:00:0E EtherType: 0x88CC Direction: Bidirectional neighbor advertisements Default Interval: Typically 30 seconds (vendor configurable) TTL: Usually 120 seconds (4× advertisement interval) Mandatory TLVs# LLDP frames must include:">
+  <meta itemprop="wordCount" content="540">
+
+<title>LLDP | Braue Brief</title>
+<link rel="icon" href="/favicon.png" >
+<link rel="manifest" href="/manifest.json">
+<link rel="canonical" href="https://example.org/protocols/network/lldp/">
+<link rel="stylesheet" href="/book.min.cc2c524ed250aac81b23d1f4af87344917b325208841feca0968fe450f570575.css" integrity="sha256-zCxSTtJQqsgbI9H0r4c0SRezJSCIQf7KCWj&#43;RQ9XBXU=" crossorigin="anonymous">
+
+
+  <script defer src="/fuse.min.js"></script>
+  <script defer src="/en.search.min.58f0d0b90f31441395751551f3226557b1b151c56cf8ecba53e0c385d3cb5cfc.js" integrity="sha256-WPDQuQ8xRBOVdRVR8yJlV7GxUcVs&#43;Oy6U&#43;DDhdPLXPw=" crossorigin="anonymous"></script>
+
+
+
+  
+</head>
+<body dir="ltr" class="book-kind-page book-type-protocols">
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    
+<aside class="book-menu">
+  <div class="book-menu-content">
+    
+  <nav>
+<h2 class="book-brand">
+  <a class="flex align-center" href="/"><span>Braue Brief</span>
+  </a>
+</h2>
+
+
+<div class="book-search hidden">
+  <input id="book-search-input" type="text" 
+    placeholder="Search"
+    aria-label="Search"
+    maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+<script>document.querySelector(".book-search").classList.remove("hidden")</script>
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-540ef7a0b502cbd8589d7dc5f6d29e30" class="toggle" checked />
+    <label for="section-540ef7a0b502cbd8589d7dc5f6d29e30" class="flex">
+      <a href="/protocols/" class="">
+        Protocols</a>
+      <img src="/icons/chevron-right.svg" class="book-icon" alt="Expand" />
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-7aeb60c468c1e706c41b9630a0be8b31" class="toggle"  />
+    <label for="section-7aeb60c468c1e706c41b9630a0be8b31" class="flex">
+      <a role="button" class="">
+        Data</a>
+      <img src="/icons/chevron-right.svg" class="book-icon" alt="Expand" />
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-2712054b811b9c4066797d618455ea66" class="toggle"  />
+    <label for="section-2712054b811b9c4066797d618455ea66" class="flex">
+      <a role="button" class="">
+        Authentication</a>
+      <img src="/icons/chevron-right.svg" class="book-icon" alt="Expand" />
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/protocols/auth/ldap/" class="">
+      LDAP</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/protocols/auth/radius/" class="">
+      RADIUS</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/protocols/auth/tacacs/" class="">
+      TACACS&#43;</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-bb76d159f586053acd77b84963bad581" class="toggle" checked />
+    <label for="section-bb76d159f586053acd77b84963bad581" class="flex">
+      <a role="button" class="">
+        Network</a>
+      <img src="/icons/chevron-right.svg" class="book-icon" alt="Expand" />
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/protocols/network/arp/" class="">
+      ARP</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/protocols/network/dhcp/" class="">
+      DHCP</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/protocols/network/icmp/" class="">
+      ICMP</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/protocols/network/lldp/" class="active">
+      LLDP</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/protocols/network/rstp/" class="">
+      RSTP</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-52fac273d5a73441b044614e859cc631" class="toggle"  />
+    <label for="section-52fac273d5a73441b044614e859cc631" class="flex">
+      <a role="button" class="">
+        Security</a>
+      <img src="/icons/chevron-right.svg" class="book-icon" alt="Expand" />
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/protocols/security/ipsec/" class="">
+      IPSec</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/protocols/security/ssh/" class="">
+      SSH</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/protocols/security/tls/" class="">
+      TLS</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-2ca7c49d323a716609821fbcd038cd89" class="toggle"  />
+    <label for="section-2ca7c49d323a716609821fbcd038cd89" class="flex">
+      <a href="/topologies/" class="">
+        Topologies</a>
+      <img src="/icons/chevron-right.svg" class="book-icon" alt="Expand" />
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-d341f0368fbffbeeaee8bc6e405a1275" class="toggle"  />
+    <label for="section-d341f0368fbffbeeaee8bc6e405a1275" class="flex">
+      <a href="/applications/" class="">
+        Applications</a>
+      <img src="/icons/chevron-right.svg" class="book-icon" alt="Expand" />
+    </label>
+  
+
+          
+  <ul>
+    
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a>
+      Flisr</a>
+  
+
+          
+  <ul>
+    
+      
+    
+      
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-2d1bca95a6e88f0dabfc2163623d2f1b" class="toggle"  />
+    <label for="section-2d1bca95a6e88f0dabfc2163623d2f1b" class="flex">
+      <a href="/equipment/" class="">
+        Equipment</a>
+      <img src="/icons/chevron-right.svg" class="book-icon" alt="Expand" />
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a>
+      Ied</a>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a>
+      Automation</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a>
+      Network</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a>
+      Relay</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a>
+      Power</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-9cf0a8ab62fa53529f10aae148d0e1b7" class="toggle"  />
+    <label for="section-9cf0a8ab62fa53529f10aae148d0e1b7" class="flex">
+      <a href="/ports/" class="">
+        Ports</a>
+      <img src="/icons/chevron-right.svg" class="book-icon" alt="Expand" />
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-c339f8c41feff0073df413ab650e7237" class="toggle"  />
+    <label for="section-c339f8c41feff0073df413ab650e7237" class="flex">
+      <a role="button" class="">
+        Copper</a>
+      <img src="/icons/chevron-right.svg" class="book-icon" alt="Expand" />
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/ports/copper/bnc/" class="">
+      BNC</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/ports/copper/m12/" class="">
+      M12</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/ports/copper/rj45/" class="">
+      RJ45</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-22309e31bc390317583f8b1ea399757e" class="toggle"  />
+    <label for="section-22309e31bc390317583f8b1ea399757e" class="flex">
+      <a role="button" class="">
+        Fiber</a>
+      <img src="/icons/chevron-right.svg" class="book-icon" alt="Expand" />
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/ports/fiber/fc/" class="">
+      FC</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/ports/fiber/lc/" class="">
+      LC</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/ports/fiber/sc/" class="">
+      SC</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/ports/fiber/sfp/" class="">
+      SFP</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/ports/fiber/st/" class="">
+      ST</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-33e1dce60a06b60153df57b8a974ba44" class="toggle"  />
+    <label for="section-33e1dce60a06b60153df57b8a974ba44" class="flex">
+      <a role="button" class="">
+        Serial</a>
+      <img src="/icons/chevron-right.svg" class="book-icon" alt="Expand" />
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/ports/serial/db25/" class="">
+      DB25</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/ports/serial/db9/" class="">
+      DB9</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/ports/serial/rs/" class="">
+      RS</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/ports/serial/usb/" class="">
+      USB</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+
+
+
+  </div>
+</aside>
+ 
+
+    <div class="book-page">
+      <header class="book-header hidden">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/icons/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <h3>LLDP</h3>
+
+  <label for="toc-control">
+    
+    <img src="/icons/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+  </label>
+</div>
+
+
+  
+  <aside class="hidden">
+    
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#overview">Overview</a></li>
+    <li><a href="#terminology">Terminology</a></li>
+    <li><a href="#practical-use-cases">Practical Use-Cases</a></li>
+    <li><a href="#protocol-characteristics">Protocol Characteristics</a>
+      <ul>
+        <li><a href="#key-parameters">Key Parameters</a></li>
+        <li><a href="#mandatory-tlvs">Mandatory TLVs</a></li>
+        <li><a href="#common-optional-tlvs">Common Optional TLVs</a></li>
+        <li><a href="#best-practices">Best Practices</a></li>
+        <li><a href="#common-pitfalls">Common Pitfalls</a></li>
+      </ul>
+    </li>
+    <li><a href="#lldp-frame-structure">LLDP Frame Structure</a></li>
+    <li><a href="#troubleshooting--failure-modes">Troubleshooting &amp; Failure Modes</a>
+      <ul>
+        <li><a href="#symptoms">Symptoms</a></li>
+        <li><a href="#root-causes">Root Causes</a></li>
+        <li><a href="#fixes--workarounds">Fixes / Workarounds</a></li>
+        <li><a href="#field-test-methods">Field Test Methods</a></li>
+      </ul>
+    </li>
+    <li><a href="#standards--references">Standards &amp; References</a></li>
+  </ul>
+</nav>
+
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+  <article class="markdown book-article"><h1 id="lldp-link-layer-discovery-protocol">LLDP (Link Layer Discovery Protocol)<a class="anchor" href="#lldp-link-layer-discovery-protocol">#</a></h1>
+<h2 id="overview">Overview<a class="anchor" href="#overview">#</a></h2>
+<p><strong>LLDP (Link Layer Discovery Protocol)</strong> is a <strong>vendor-neutral, Layer 2 discovery protocol</strong> used by network devices to advertise and discover information about directly connected neighbors.</p>
+<p>LLDP allows switches, routers, firewalls, servers, and industrial devices to exchange identity, capability, and configuration information. It is widely used for <strong>topology discovery, network documentation, troubleshooting, and automation</strong>.</p>
+<h2 id="terminology">Terminology<a class="anchor" href="#terminology">#</a></h2>
+<ul>
+<li><strong>TLV (Type-Length-Value)</strong> — the encoding format used for LLDP information elements.</li>
+<li><strong>Chassis ID</strong> — uniquely identifies the sending device.</li>
+<li><strong>Port ID</strong> — identifies the sending interface.</li>
+<li><strong>TTL (Time To Live)</strong> — how long received LLDP information remains valid.</li>
+<li><strong>LLDPDU</strong> — LLDP Data Unit; the packet exchanged between neighbors.</li>
+<li><strong>Neighbor Table</strong> — locally stored information learned via LLDP.</li>
+<li><strong>Optional TLVs</strong> — additional advertised data such as system name, VLAN, or power info.</li>
+</ul>
+<h2 id="practical-use-cases">Practical Use-Cases<a class="anchor" href="#practical-use-cases">#</a></h2>
+<ul>
+<li>Automatic discovery of network topology.</li>
+<li>Identifying which device and port is connected where.</li>
+<li>Validating cabling and patching during commissioning.</li>
+<li>Supporting VoIP phone and access point deployment.</li>
+<li>Network inventory, documentation, and automation.</li>
+<li>Troubleshooting miswired or unexpected connections.</li>
+</ul>
+<h2 id="protocol-characteristics">Protocol Characteristics<a class="anchor" href="#protocol-characteristics">#</a></h2>
+<h3 id="key-parameters">Key Parameters<a class="anchor" href="#key-parameters">#</a></h3>
+<ul>
+<li><strong>OSI Layer</strong>: Layer 2 (Data Link)</li>
+<li><strong>Transport</strong>: Ethernet (no IP required)</li>
+<li><strong>Multicast Address</strong>: <code>01:80:C2:00:00:0E</code></li>
+<li><strong>EtherType</strong>: <code>0x88CC</code></li>
+<li><strong>Direction</strong>: Bidirectional neighbor advertisements</li>
+<li><strong>Default Interval</strong>: Typically 30 seconds (vendor configurable)</li>
+<li><strong>TTL</strong>: Usually 120 seconds (4× advertisement interval)</li>
+</ul>
+<h3 id="mandatory-tlvs">Mandatory TLVs<a class="anchor" href="#mandatory-tlvs">#</a></h3>
+<p>LLDP frames must include:</p>
+<ul>
+<li><strong>Chassis ID TLV</strong></li>
+<li><strong>Port ID TLV</strong></li>
+<li><strong>Time To Live (TTL) TLV</strong></li>
+</ul>
+<h3 id="common-optional-tlvs">Common Optional TLVs<a class="anchor" href="#common-optional-tlvs">#</a></h3>
+<ul>
+<li>System Name</li>
+<li>System Description</li>
+<li>System Capabilities</li>
+<li>Management Address</li>
+<li>Port Description</li>
+<li>VLAN / QoS information</li>
+<li>Power via MDI (PoE) details</li>
+</ul>
+<h3 id="best-practices">Best Practices<a class="anchor" href="#best-practices">#</a></h3>
+<ul>
+<li>Enable LLDP on access and aggregation switches.</li>
+<li>Use LLDP for documentation and topology mapping.</li>
+<li>Disable LLDP on untrusted or external-facing interfaces if needed.</li>
+<li>Standardize LLDP intervals across the network.</li>
+<li>Monitor LLDP neighbor tables for unexpected devices.</li>
+</ul>
+<h3 id="common-pitfalls">Common Pitfalls<a class="anchor" href="#common-pitfalls">#</a></h3>
+<ul>
+<li>LLDP disabled by default on some devices.</li>
+<li>Confusion between LLDP and vendor-specific discovery protocols.</li>
+<li>Stale neighbor entries due to TTL mismatch.</li>
+<li>Security concerns when advertising too much device information.</li>
+<li>Assuming LLDP works across routed boundaries (it does not).</li>
+</ul>
+<h2 id="lldp-frame-structure">LLDP Frame Structure<a class="anchor" href="#lldp-frame-structure">#</a></h2>
+<table>
+  <thead>
+      <tr>
+          <th>Field</th>
+          <th>Description</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>Chassis ID TLV</strong></td>
+          <td>Identifies the sending device</td>
+      </tr>
+      <tr>
+          <td><strong>Port ID TLV</strong></td>
+          <td>Identifies the sending interface</td>
+      </tr>
+      <tr>
+          <td><strong>TTL TLV</strong></td>
+          <td>Validity timer for the advertisement</td>
+      </tr>
+      <tr>
+          <td><strong>Optional TLVs</strong></td>
+          <td>Additional system and port information</td>
+      </tr>
+      <tr>
+          <td><strong>End of LLDPDU TLV</strong></td>
+          <td>Marks end of the LLDP frame</td>
+      </tr>
+  </tbody>
+</table>
+<h2 id="troubleshooting--failure-modes">Troubleshooting &amp; Failure Modes<a class="anchor" href="#troubleshooting--failure-modes">#</a></h2>
+<h3 id="symptoms">Symptoms<a class="anchor" href="#symptoms">#</a></h3>
+<ul>
+<li>No LLDP neighbors displayed.</li>
+<li>Incorrect or missing device information.</li>
+<li>Topology maps incomplete or inaccurate.</li>
+<li>VoIP phones or APs not auto-configuring.</li>
+<li>Unexpected devices appearing on ports.</li>
+</ul>
+<h3 id="root-causes">Root Causes<a class="anchor" href="#root-causes">#</a></h3>
+<ul>
+<li>LLDP disabled on one or both sides of the link.</li>
+<li>LLDP filtered by switch configuration or security policies.</li>
+<li>Incompatible LLDP versions or TLVs.</li>
+<li>Incorrect interface mode (access vs trunk).</li>
+<li>Neighbor TTL expiration due to packet loss.</li>
+</ul>
+<h3 id="fixes--workarounds">Fixes / Workarounds<a class="anchor" href="#fixes--workarounds">#</a></h3>
+<ul>
+<li>Enable LLDP transmit and receive on interfaces.</li>
+<li>Verify LLDP is not filtered or rate-limited.</li>
+<li>Adjust advertisement interval and TTL if needed.</li>
+<li>Use packet capture to verify LLDP frames on the wire.</li>
+<li>Compare LLDP output on both ends of the link.</li>
+</ul>
+<h3 id="field-test-methods">Field Test Methods<a class="anchor" href="#field-test-methods">#</a></h3>
+<ul>
+<li><code>show lldp neighbors</code> / <code>lldpctl</code></li>
+<li>Interface-specific LLDP neighbor commands</li>
+<li>Packet capture with Wireshark (filter: <code>eth.type == 0x88cc</code>)</li>
+<li>Verify MAC multicast reachability</li>
+<li>Cross-check physical cabling and port labeling</li>
+</ul>
+<h2 id="standards--references">Standards &amp; References<a class="anchor" href="#standards--references">#</a></h2>
+<ul>
+<li><strong>IEEE 802.1AB</strong> — LLDP standard</li>
+<li><strong>RFC 4957</strong> — LLDP Management Information Base</li>
+<li><strong>IEEE 802.3af / 802.3at / 802.3bt</strong> — PoE TLVs</li>
+<li><strong>Vendor Documentation</strong> — extended TLVs and configuration guidance</li>
+</ul>
+</article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+<div>
+
+</div>
+
+<div>
+
+</div>
+
+</div>
+
+
+
+  
+
+
+
+  
+  
+  
+  <div class="flex flex-wrap justify-between">
+    <span>
+    
+      <a href="/protocols/network/icmp/" class="flex align-center">
+        <img src="/icons/backward.svg" class="book-icon" alt="Backward" />
+        <span>ICMP</span>
+      </a>
+    
+    </span>
+    <span>
+    
+      <a href="/protocols/network/rstp/" class="flex align-center">
+        <span>RSTP</span>
+        <img src="/icons/forward.svg" class="book-icon" alt="Forward" />
+      </a>
+    
+    </span>
+  </div>
+  
+
+
+ 
+        
+  
+ 
+        
+        
+  
+ 
+        
+  
+  
+    <script>(function(){document.querySelectorAll("pre:has(code)").forEach(e=>{e.addEventListener("click",e.focus),e.addEventListener("copy",function(t){if(t.preventDefault(),navigator.clipboard){const t=window.getSelection().toString()||e.textContent;navigator.clipboard.writeText(t)}})})})()</script>
+  
+
+      </footer>
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+  
+  <aside class="book-toc">
+    <div class="book-toc-content">
+      
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#overview">Overview</a></li>
+    <li><a href="#terminology">Terminology</a></li>
+    <li><a href="#practical-use-cases">Practical Use-Cases</a></li>
+    <li><a href="#protocol-characteristics">Protocol Characteristics</a>
+      <ul>
+        <li><a href="#key-parameters">Key Parameters</a></li>
+        <li><a href="#mandatory-tlvs">Mandatory TLVs</a></li>
+        <li><a href="#common-optional-tlvs">Common Optional TLVs</a></li>
+        <li><a href="#best-practices">Best Practices</a></li>
+        <li><a href="#common-pitfalls">Common Pitfalls</a></li>
+      </ul>
+    </li>
+    <li><a href="#lldp-frame-structure">LLDP Frame Structure</a></li>
+    <li><a href="#troubleshooting--failure-modes">Troubleshooting &amp; Failure Modes</a>
+      <ul>
+        <li><a href="#symptoms">Symptoms</a></li>
+        <li><a href="#root-causes">Root Causes</a></li>
+        <li><a href="#fixes--workarounds">Fixes / Workarounds</a></li>
+        <li><a href="#field-test-methods">Field Test Methods</a></li>
+      </ul>
+    </li>
+    <li><a href="#standards--references">Standards &amp; References</a></li>
+  </ul>
+</nav>
+
+
+
+    </div>
+  </aside>
+  
+ 
+  </main>
+
+  
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

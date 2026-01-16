@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Fiber on Braue Brief</title>
+    <link>https://example.org/ports/fiber/</link>
+    <description>Recent content in Fiber on Braue Brief</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <atom:link href="https://example.org/ports/fiber/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>FC</title>
+      <link>https://example.org/ports/fiber/fc/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://example.org/ports/fiber/fc/</guid>
+      <description>&lt;h1 id=&#34;fc-fiber-connector&#34;&gt;FC Fiber Connector&lt;a class=&#34;anchor&#34; href=&#34;#fc-fiber-connector&#34;&gt;#&lt;/a&gt;&lt;/h1&gt;&#xA;&lt;img src=&#34;https://example.org/images/fcconn.png&#34; alt=&#34;FC Fiber Connector&#34; width=&#34;40%&#34;&gt;&#xA;&lt;img src=&#34;https://example.org/images/fcport.jpg&#34; alt=&#34;FC Fiber Port&#34; width=&#34;40%&#34;&gt;&#xA;&lt;h2 id=&#34;overview&#34;&gt;Overview&lt;a class=&#34;anchor&#34; href=&#34;#overview&#34;&gt;#&lt;/a&gt;&lt;/h2&gt;&#xA;&lt;p&gt;The &lt;strong&gt;FC (Ferrule Connector)&lt;/strong&gt; is a fiber optic connector featuring a &lt;strong&gt;threaded, screw-on coupling&lt;/strong&gt; and a 2.5 mm ferrule. It was designed for applications requiring high mechanical stability and precise alignment, making it well-suited for environments subject to vibration, temperature variation, or physical disturbance.&lt;/p&gt;&#xA;&lt;p&gt;While less common in modern Ethernet networking, FC connectors remain prevalent in &lt;strong&gt;telecommunications, test equipment, instrumentation, and legacy or ruggedized industrial systems&lt;/strong&gt;.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>LC</title>
+      <link>https://example.org/ports/fiber/lc/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://example.org/ports/fiber/lc/</guid>
+      <description>&lt;h1 id=&#34;lc-fiber-connector&#34;&gt;LC Fiber Connector&lt;a class=&#34;anchor&#34; href=&#34;#lc-fiber-connector&#34;&gt;#&lt;/a&gt;&lt;/h1&gt;&#xA;&lt;img src=&#34;https://example.org/images/lcconn.jpg&#34; alt=&#34;LC Fiber Connector&#34; width=&#34;40%&#34;&gt;&#xA;&lt;img src=&#34;https://example.org/images/lcport.jpg&#34; alt=&#34;LC Fiber Port&#34; width=&#34;40%&#34;&gt;&#xA;&lt;h2 id=&#34;overview&#34;&gt;Overview&lt;a class=&#34;anchor&#34; href=&#34;#overview&#34;&gt;#&lt;/a&gt;&lt;/h2&gt;&#xA;&lt;p&gt;The &lt;strong&gt;LC (Lucent Connector)&lt;/strong&gt; is a small-form-factor fiber optic connector widely used for high-speed optical networking. Its compact size and latch-style retention make it the dominant connector for SFP, SFP+, SFP28, and QSFP transceivers in modern networking and industrial environments.&lt;/p&gt;&#xA;&lt;p&gt;LC connectors are used exclusively for &lt;strong&gt;optical (non-electrical)&lt;/strong&gt; signaling and are immune to EMI, making them ideal for long-distance and high-noise installations.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>SC</title>
+      <link>https://example.org/ports/fiber/sc/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://example.org/ports/fiber/sc/</guid>
+      <description>&lt;h1 id=&#34;sc-fiber-connector&#34;&gt;SC Fiber Connector&lt;a class=&#34;anchor&#34; href=&#34;#sc-fiber-connector&#34;&gt;#&lt;/a&gt;&lt;/h1&gt;&#xA;&lt;img src=&#34;https://example.org/images/scboth.jpeg&#34; alt=&#34;SC Fiber Connector&#34; width=&#34;60%&#34;&gt;&#xA;&lt;h2 id=&#34;overview&#34;&gt;Overview&lt;a class=&#34;anchor&#34; href=&#34;#overview&#34;&gt;#&lt;/a&gt;&lt;/h2&gt;&#xA;&lt;p&gt;The &lt;strong&gt;SC (Subscriber Connector / Square Connector)&lt;/strong&gt; is a push-pull fiber optic connector featuring a &lt;strong&gt;2.5 mm ferrule&lt;/strong&gt; and a snap-in coupling mechanism. Known for its robustness and ease of use, the SC connector has been widely deployed in telecommunications, data centers, and utility substations.&lt;/p&gt;&#xA;&lt;p&gt;While increasingly replaced by LC connectors in high-density equipment, SC connectors remain common in &lt;strong&gt;panel-mounted equipment, patch panels, and ruggedized industrial systems&lt;/strong&gt;.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>SFP</title>
+      <link>https://example.org/ports/fiber/sfp/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://example.org/ports/fiber/sfp/</guid>
+      <description>&lt;h1 id=&#34;sfp-small-form-factor-pluggable&#34;&gt;SFP (Small Form-factor Pluggable)&lt;a class=&#34;anchor&#34; href=&#34;#sfp-small-form-factor-pluggable&#34;&gt;#&lt;/a&gt;&lt;/h1&gt;&#xA;&lt;img src=&#34;https://example.org/images/sfpboth.jpg&#34; alt=&#34;SFP Transceiver&#34; width=&#34;70%&#34;&gt;&#xA;&lt;h2 id=&#34;overview&#34;&gt;Overview&lt;a class=&#34;anchor&#34; href=&#34;#overview&#34;&gt;#&lt;/a&gt;&lt;/h2&gt;&#xA;&lt;p&gt;The &lt;strong&gt;SFP (Small Form-factor Pluggable)&lt;/strong&gt; is a &lt;strong&gt;hot-swappable optical or electrical transceiver module&lt;/strong&gt; used to interface network equipment with fiber or copper media. Unlike RJ45, LC, SC, or other connectors, SFP defines both the &lt;strong&gt;electrical interface to the host device&lt;/strong&gt; and the &lt;strong&gt;optical or copper physical layer&lt;/strong&gt; toward the network.&lt;/p&gt;&#xA;&lt;p&gt;SFP modules allow a single device port to support multiple media types, speeds, and distances by swapping transceivers rather than hardware.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>ST</title>
+      <link>https://example.org/ports/fiber/st/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://example.org/ports/fiber/st/</guid>
+      <description>&lt;h1 id=&#34;st-fiber-connector&#34;&gt;ST Fiber Connector&lt;a class=&#34;anchor&#34; href=&#34;#st-fiber-connector&#34;&gt;#&lt;/a&gt;&lt;/h1&gt;&#xA;&lt;img src=&#34;https://example.org/images/stconn.jpg&#34; alt=&#34;ST Fiber Connector&#34; width=&#34;40%&#34;&gt;&#xA;&lt;img src=&#34;https://example.org/images/stport.png&#34; alt=&#34;ST Fiber Port&#34; width=&#34;50%&#34;&gt;&#xA;&lt;h2 id=&#34;overview&#34;&gt;Overview&lt;a class=&#34;anchor&#34; href=&#34;#overview&#34;&gt;#&lt;/a&gt;&lt;/h2&gt;&#xA;&lt;p&gt;The &lt;strong&gt;ST (Straight Tip)&lt;/strong&gt; connector is a legacy fiber optic connector featuring a bayonet-style twist-lock coupling and a 2.5 mm ferrule. While largely replaced by LC connectors in modern equipment, ST connectors are still commonly encountered in older installations, industrial environments, and legacy substation or utility fiber networks.&lt;/p&gt;&#xA;&lt;p&gt;ST connectors are used exclusively for &lt;strong&gt;optical (non-electrical)&lt;/strong&gt; signaling and provide good mechanical retention, making them suitable for environments subject to vibration.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,1179 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+<head>
+  <!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="USB (Universal Serial Bus)# Overview# USB (Universal Serial Bus) is a standard for serial communication and power delivery between computers, industrial devices, sensors, and peripherals. USB supports multiple speeds, device classes, and connector types, making it versatile for both consumer and industrial applications.
+USB is hot-swappable, supports plug-and-play detection, and can carry both data and power over the same cable.
+Terminology# USB 1.1 / 2.0 / 3.0 / 3.1 / 3.2 / USB4 — speed and protocol versions. Host / Device / OTG — roles in USB communication. Upstream / Downstream — direction from host to device. Type-A / Type-B / Micro / Mini / C — connector forms. DP (Data &#43; Power) — standard USB wiring for data and VBUS. VBUS / GND / D&#43; / D- — USB wiring signals. Power Delivery (PD) — USB standard for high-voltage/current power (up to 240W in USB-C). Practical Use-Cases# Industrial HMI, sensors, and relay engineering access ports. Firmware updates and configuration via USB interfaces. Data acquisition from lab instruments or field devices. Powering low-voltage devices (USB-powered relays, cameras, or sensors). Computer peripheral connections (keyboard, mouse, storage, etc.). Electrical &amp; Signaling Characteristics# USB Version Max Speed Max Cable Length Typical Voltage Typical Connector USB 1.1 12 Mbps 5 m 5 V Type-A / Type-B / Mini / Micro USB 2.0 480 Mbps 5 m 5 V Type-A / Type-B / Mini / Micro USB 3.x 5–20 Gbps 3 m 5 V Type-A / Type-B / Micro / USB-C USB4 40 Gbps Up to 2 m 5 V USB-C only Key Points# USB uses differential signaling (D&#43;/D-) for data. Power is supplied over VBUS/GND (typically 5 V, up to 3 A for USB-C PD). Supports hot-plugging, enumeration, and device class negotiation. USB-C supports reversible plug, higher current, and alternate modes (DisplayPort, Thunderbolt). Configuration &amp; Implementation# Best Practices# Use proper USB cables for the speed and power requirements. Observe USB polarity (for Type-A/B/Micro) or rely on reversible Type-C. Avoid daisy-chaining non-powered hubs for high-current devices. Use shielded cables in electrically noisy industrial environments. Keep connectors clean and undamaged for reliable enumeration. Common Pitfalls# Using legacy cables with high-speed devices (USB 2.0 vs 3.x). Exceeding cable length limits for data or power. Insufficient power supply to devices over USB. Connector damage due to repeated insertions or poor alignment. Misconfigured device drivers preventing enumeration. Connector Types# Type Description USB-A Standard host connector, rectangular, most common. USB-B Device connector, square-ish, used for printers, industrial devices. Micro-USB Smaller device connector, widely used in embedded/portable devices. Mini-USB Older small device connector. USB-C Reversible connector, supports USB 3.x, USB4, and Power Delivery. Troubleshooting &amp; Failure Modes# Symptoms# Device not recognized or enumerated. Intermittent connection or frequent disconnects. Power delivery failure or insufficient voltage/current. Data corruption or low throughput. Root Causes# Damaged connectors or bent pins. Incompatible cable type or poor quality. Exceeding USB hub power budget. EMI or electrical noise on long cables. Driver or firmware incompatibility. Fixes / Workarounds# Replace cable with proper rated cable (USB 2.0 vs 3.x, shielded). Inspect and clean connectors. Use powered hubs for high-current devices. Verify device drivers and firmware. Shorten cable length if exceeding maximum allowed distance. Field Test Methods# USB protocol analyzer or software enumeration tool Multimeter to verify VBUS voltage Test with known-good devices and cables Oscilloscope for D&#43;/D- differential signal analysis Standards &amp; References# USB 2.0 / 3.x / 4 — official USB specifications USB Implementers Forum (USB-IF) — connector, cable, and power standards IEC 62680 — USB international standard for industrial use USB Power Delivery (PD) — specification for higher-power USB connections ">
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#343a40">
+<meta name="color-scheme" content="light dark"><meta property="og:url" content="https://example.org/ports/serial/usb/">
+  <meta property="og:site_name" content="Braue Brief">
+  <meta property="og:title" content="USB">
+  <meta property="og:description" content="USB (Universal Serial Bus)# Overview# USB (Universal Serial Bus) is a standard for serial communication and power delivery between computers, industrial devices, sensors, and peripherals. USB supports multiple speeds, device classes, and connector types, making it versatile for both consumer and industrial applications.
+USB is hot-swappable, supports plug-and-play detection, and can carry both data and power over the same cable.
+Terminology# USB 1.1 / 2.0 / 3.0 / 3.1 / 3.2 / USB4 — speed and protocol versions. Host / Device / OTG — roles in USB communication. Upstream / Downstream — direction from host to device. Type-A / Type-B / Micro / Mini / C — connector forms. DP (Data &#43; Power) — standard USB wiring for data and VBUS. VBUS / GND / D&#43; / D- — USB wiring signals. Power Delivery (PD) — USB standard for high-voltage/current power (up to 240W in USB-C). Practical Use-Cases# Industrial HMI, sensors, and relay engineering access ports. Firmware updates and configuration via USB interfaces. Data acquisition from lab instruments or field devices. Powering low-voltage devices (USB-powered relays, cameras, or sensors). Computer peripheral connections (keyboard, mouse, storage, etc.). Electrical &amp; Signaling Characteristics# USB Version Max Speed Max Cable Length Typical Voltage Typical Connector USB 1.1 12 Mbps 5 m 5 V Type-A / Type-B / Mini / Micro USB 2.0 480 Mbps 5 m 5 V Type-A / Type-B / Mini / Micro USB 3.x 5–20 Gbps 3 m 5 V Type-A / Type-B / Micro / USB-C USB4 40 Gbps Up to 2 m 5 V USB-C only Key Points# USB uses differential signaling (D&#43;/D-) for data. Power is supplied over VBUS/GND (typically 5 V, up to 3 A for USB-C PD). Supports hot-plugging, enumeration, and device class negotiation. USB-C supports reversible plug, higher current, and alternate modes (DisplayPort, Thunderbolt). Configuration &amp; Implementation# Best Practices# Use proper USB cables for the speed and power requirements. Observe USB polarity (for Type-A/B/Micro) or rely on reversible Type-C. Avoid daisy-chaining non-powered hubs for high-current devices. Use shielded cables in electrically noisy industrial environments. Keep connectors clean and undamaged for reliable enumeration. Common Pitfalls# Using legacy cables with high-speed devices (USB 2.0 vs 3.x). Exceeding cable length limits for data or power. Insufficient power supply to devices over USB. Connector damage due to repeated insertions or poor alignment. Misconfigured device drivers preventing enumeration. Connector Types# Type Description USB-A Standard host connector, rectangular, most common. USB-B Device connector, square-ish, used for printers, industrial devices. Micro-USB Smaller device connector, widely used in embedded/portable devices. Mini-USB Older small device connector. USB-C Reversible connector, supports USB 3.x, USB4, and Power Delivery. Troubleshooting &amp; Failure Modes# Symptoms# Device not recognized or enumerated. Intermittent connection or frequent disconnects. Power delivery failure or insufficient voltage/current. Data corruption or low throughput. Root Causes# Damaged connectors or bent pins. Incompatible cable type or poor quality. Exceeding USB hub power budget. EMI or electrical noise on long cables. Driver or firmware incompatibility. Fixes / Workarounds# Replace cable with proper rated cable (USB 2.0 vs 3.x, shielded). Inspect and clean connectors. Use powered hubs for high-current devices. Verify device drivers and firmware. Shorten cable length if exceeding maximum allowed distance. Field Test Methods# USB protocol analyzer or software enumeration tool Multimeter to verify VBUS voltage Test with known-good devices and cables Oscilloscope for D&#43;/D- differential signal analysis Standards &amp; References# USB 2.0 / 3.x / 4 — official USB specifications USB Implementers Forum (USB-IF) — connector, cable, and power standards IEC 62680 — USB international standard for industrial use USB Power Delivery (PD) — specification for higher-power USB connections">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="ports">
+
+
+  <meta itemprop="name" content="USB">
+  <meta itemprop="description" content="USB (Universal Serial Bus)# Overview# USB (Universal Serial Bus) is a standard for serial communication and power delivery between computers, industrial devices, sensors, and peripherals. USB supports multiple speeds, device classes, and connector types, making it versatile for both consumer and industrial applications.
+USB is hot-swappable, supports plug-and-play detection, and can carry both data and power over the same cable.
+Terminology# USB 1.1 / 2.0 / 3.0 / 3.1 / 3.2 / USB4 — speed and protocol versions. Host / Device / OTG — roles in USB communication. Upstream / Downstream — direction from host to device. Type-A / Type-B / Micro / Mini / C — connector forms. DP (Data &#43; Power) — standard USB wiring for data and VBUS. VBUS / GND / D&#43; / D- — USB wiring signals. Power Delivery (PD) — USB standard for high-voltage/current power (up to 240W in USB-C). Practical Use-Cases# Industrial HMI, sensors, and relay engineering access ports. Firmware updates and configuration via USB interfaces. Data acquisition from lab instruments or field devices. Powering low-voltage devices (USB-powered relays, cameras, or sensors). Computer peripheral connections (keyboard, mouse, storage, etc.). Electrical &amp; Signaling Characteristics# USB Version Max Speed Max Cable Length Typical Voltage Typical Connector USB 1.1 12 Mbps 5 m 5 V Type-A / Type-B / Mini / Micro USB 2.0 480 Mbps 5 m 5 V Type-A / Type-B / Mini / Micro USB 3.x 5–20 Gbps 3 m 5 V Type-A / Type-B / Micro / USB-C USB4 40 Gbps Up to 2 m 5 V USB-C only Key Points# USB uses differential signaling (D&#43;/D-) for data. Power is supplied over VBUS/GND (typically 5 V, up to 3 A for USB-C PD). Supports hot-plugging, enumeration, and device class negotiation. USB-C supports reversible plug, higher current, and alternate modes (DisplayPort, Thunderbolt). Configuration &amp; Implementation# Best Practices# Use proper USB cables for the speed and power requirements. Observe USB polarity (for Type-A/B/Micro) or rely on reversible Type-C. Avoid daisy-chaining non-powered hubs for high-current devices. Use shielded cables in electrically noisy industrial environments. Keep connectors clean and undamaged for reliable enumeration. Common Pitfalls# Using legacy cables with high-speed devices (USB 2.0 vs 3.x). Exceeding cable length limits for data or power. Insufficient power supply to devices over USB. Connector damage due to repeated insertions or poor alignment. Misconfigured device drivers preventing enumeration. Connector Types# Type Description USB-A Standard host connector, rectangular, most common. USB-B Device connector, square-ish, used for printers, industrial devices. Micro-USB Smaller device connector, widely used in embedded/portable devices. Mini-USB Older small device connector. USB-C Reversible connector, supports USB 3.x, USB4, and Power Delivery. Troubleshooting &amp; Failure Modes# Symptoms# Device not recognized or enumerated. Intermittent connection or frequent disconnects. Power delivery failure or insufficient voltage/current. Data corruption or low throughput. Root Causes# Damaged connectors or bent pins. Incompatible cable type or poor quality. Exceeding USB hub power budget. EMI or electrical noise on long cables. Driver or firmware incompatibility. Fixes / Workarounds# Replace cable with proper rated cable (USB 2.0 vs 3.x, shielded). Inspect and clean connectors. Use powered hubs for high-current devices. Verify device drivers and firmware. Shorten cable length if exceeding maximum allowed distance. Field Test Methods# USB protocol analyzer or software enumeration tool Multimeter to verify VBUS voltage Test with known-good devices and cables Oscilloscope for D&#43;/D- differential signal analysis Standards &amp; References# USB 2.0 / 3.x / 4 — official USB specifications USB Implementers Forum (USB-IF) — connector, cable, and power standards IEC 62680 — USB international standard for industrial use USB Power Delivery (PD) — specification for higher-power USB connections">
+  <meta itemprop="wordCount" content="593">
+
+<title>USB | Braue Brief</title>
+<link rel="icon" href="/favicon.png" >
+<link rel="manifest" href="/manifest.json">
+<link rel="canonical" href="https://example.org/ports/serial/usb/">
+<link rel="stylesheet" href="/book.min.cc2c524ed250aac81b23d1f4af87344917b325208841feca0968fe450f570575.css" integrity="sha256-zCxSTtJQqsgbI9H0r4c0SRezJSCIQf7KCWj&#43;RQ9XBXU=" crossorigin="anonymous">
+
+
+  <script defer src="/fuse.min.js"></script>
+  <script defer src="/en.search.min.58f0d0b90f31441395751551f3226557b1b151c56cf8ecba53e0c385d3cb5cfc.js" integrity="sha256-WPDQuQ8xRBOVdRVR8yJlV7GxUcVs&#43;Oy6U&#43;DDhdPLXPw=" crossorigin="anonymous"></script>
+
+
+
+  
+</head>
+<body dir="ltr" class="book-kind-page book-type-ports">
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    
+<aside class="book-menu">
+  <div class="book-menu-content">
+    
+  <nav>
+<h2 class="book-brand">
+  <a class="flex align-center" href="/"><span>Braue Brief</span>
+  </a>
+</h2>
+
+
+<div class="book-search hidden">
+  <input id="book-search-input" type="text" 
+    placeholder="Search"
+    aria-label="Search"
+    maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+<script>document.querySelector(".book-search").classList.remove("hidden")</script>
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-540ef7a0b502cbd8589d7dc5f6d29e30" class="toggle"  />
+    <label for="section-540ef7a0b502cbd8589d7dc5f6d29e30" class="flex">
+      <a href="/protocols/" class="">
+        Protocols</a>
+      <img src="/icons/chevron-right.svg" class="book-icon" alt="Expand" />
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-7aeb60c468c1e706c41b9630a0be8b31" class="toggle"  />
+    <label for="section-7aeb60c468c1e706c41b9630a0be8b31" class="flex">
+      <a role="button" class="">
+        Data</a>
+      <img src="/icons/chevron-right.svg" class="book-icon" alt="Expand" />
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-2712054b811b9c4066797d618455ea66" class="toggle"  />
+    <label for="section-2712054b811b9c4066797d618455ea66" class="flex">
+      <a role="button" class="">
+        Authentication</a>
+      <img src="/icons/chevron-right.svg" class="book-icon" alt="Expand" />
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/protocols/auth/ldap/" class="">
+      LDAP</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/protocols/auth/radius/" class="">
+      RADIUS</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/protocols/auth/tacacs/" class="">
+      TACACS&#43;</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-bb76d159f586053acd77b84963bad581" class="toggle"  />
+    <label for="section-bb76d159f586053acd77b84963bad581" class="flex">
+      <a role="button" class="">
+        Network</a>
+      <img src="/icons/chevron-right.svg" class="book-icon" alt="Expand" />
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/protocols/network/arp/" class="">
+      ARP</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/protocols/network/dhcp/" class="">
+      DHCP</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/protocols/network/icmp/" class="">
+      ICMP</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/protocols/network/lldp/" class="">
+      LLDP</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/protocols/network/rstp/" class="">
+      RSTP</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-52fac273d5a73441b044614e859cc631" class="toggle"  />
+    <label for="section-52fac273d5a73441b044614e859cc631" class="flex">
+      <a role="button" class="">
+        Security</a>
+      <img src="/icons/chevron-right.svg" class="book-icon" alt="Expand" />
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/protocols/security/ipsec/" class="">
+      IPSec</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/protocols/security/ssh/" class="">
+      SSH</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/protocols/security/tls/" class="">
+      TLS</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-2ca7c49d323a716609821fbcd038cd89" class="toggle"  />
+    <label for="section-2ca7c49d323a716609821fbcd038cd89" class="flex">
+      <a href="/topologies/" class="">
+        Topologies</a>
+      <img src="/icons/chevron-right.svg" class="book-icon" alt="Expand" />
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-d341f0368fbffbeeaee8bc6e405a1275" class="toggle"  />
+    <label for="section-d341f0368fbffbeeaee8bc6e405a1275" class="flex">
+      <a href="/applications/" class="">
+        Applications</a>
+      <img src="/icons/chevron-right.svg" class="book-icon" alt="Expand" />
+    </label>
+  
+
+          
+  <ul>
+    
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a>
+      Flisr</a>
+  
+
+          
+  <ul>
+    
+      
+    
+      
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-2d1bca95a6e88f0dabfc2163623d2f1b" class="toggle"  />
+    <label for="section-2d1bca95a6e88f0dabfc2163623d2f1b" class="flex">
+      <a href="/equipment/" class="">
+        Equipment</a>
+      <img src="/icons/chevron-right.svg" class="book-icon" alt="Expand" />
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a>
+      Ied</a>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a>
+      Automation</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a>
+      Network</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a>
+      Relay</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a>
+      Power</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-9cf0a8ab62fa53529f10aae148d0e1b7" class="toggle" checked />
+    <label for="section-9cf0a8ab62fa53529f10aae148d0e1b7" class="flex">
+      <a href="/ports/" class="">
+        Ports</a>
+      <img src="/icons/chevron-right.svg" class="book-icon" alt="Expand" />
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-c339f8c41feff0073df413ab650e7237" class="toggle"  />
+    <label for="section-c339f8c41feff0073df413ab650e7237" class="flex">
+      <a role="button" class="">
+        Copper</a>
+      <img src="/icons/chevron-right.svg" class="book-icon" alt="Expand" />
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/ports/copper/bnc/" class="">
+      BNC</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/ports/copper/m12/" class="">
+      M12</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/ports/copper/rj45/" class="">
+      RJ45</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-22309e31bc390317583f8b1ea399757e" class="toggle"  />
+    <label for="section-22309e31bc390317583f8b1ea399757e" class="flex">
+      <a role="button" class="">
+        Fiber</a>
+      <img src="/icons/chevron-right.svg" class="book-icon" alt="Expand" />
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/ports/fiber/fc/" class="">
+      FC</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/ports/fiber/lc/" class="">
+      LC</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/ports/fiber/sc/" class="">
+      SC</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/ports/fiber/sfp/" class="">
+      SFP</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/ports/fiber/st/" class="">
+      ST</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-33e1dce60a06b60153df57b8a974ba44" class="toggle" checked />
+    <label for="section-33e1dce60a06b60153df57b8a974ba44" class="flex">
+      <a role="button" class="">
+        Serial</a>
+      <img src="/icons/chevron-right.svg" class="book-icon" alt="Expand" />
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/ports/serial/db25/" class="">
+      DB25</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/ports/serial/db9/" class="">
+      DB9</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/ports/serial/rs/" class="">
+      RS</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/ports/serial/usb/" class="active">
+      USB</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+
+
+
+  </div>
+</aside>
+ 
+
+    <div class="book-page">
+      <header class="book-header hidden">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/icons/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <h3>USB</h3>
+
+  <label for="toc-control">
+    
+    <img src="/icons/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+  </label>
+</div>
+
+
+  
+  <aside class="hidden">
+    
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#overview">Overview</a></li>
+    <li><a href="#terminology">Terminology</a></li>
+    <li><a href="#practical-use-cases">Practical Use-Cases</a></li>
+    <li><a href="#electrical--signaling-characteristics">Electrical &amp; Signaling Characteristics</a>
+      <ul>
+        <li><a href="#key-points">Key Points</a></li>
+      </ul>
+    </li>
+    <li><a href="#configuration--implementation">Configuration &amp; Implementation</a>
+      <ul>
+        <li><a href="#best-practices">Best Practices</a></li>
+        <li><a href="#common-pitfalls">Common Pitfalls</a></li>
+      </ul>
+    </li>
+    <li><a href="#connector-types">Connector Types</a></li>
+    <li><a href="#troubleshooting--failure-modes">Troubleshooting &amp; Failure Modes</a>
+      <ul>
+        <li><a href="#symptoms">Symptoms</a></li>
+        <li><a href="#root-causes">Root Causes</a></li>
+        <li><a href="#fixes--workarounds">Fixes / Workarounds</a></li>
+        <li><a href="#field-test-methods">Field Test Methods</a></li>
+      </ul>
+    </li>
+    <li><a href="#standards--references">Standards &amp; References</a></li>
+  </ul>
+</nav>
+
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+  <article class="markdown book-article"><h1 id="usb-universal-serial-bus">USB (Universal Serial Bus)<a class="anchor" href="#usb-universal-serial-bus">#</a></h1>
+<img src="/images/usbtypes.png" alt="USB Connector Types" width="70%">
+<h2 id="overview">Overview<a class="anchor" href="#overview">#</a></h2>
+<p><strong>USB (Universal Serial Bus)</strong> is a standard for <strong>serial communication and power delivery</strong> between computers, industrial devices, sensors, and peripherals. USB supports multiple speeds, device classes, and connector types, making it versatile for both consumer and industrial applications.</p>
+<p>USB is <strong>hot-swappable</strong>, supports <strong>plug-and-play detection</strong>, and can carry <strong>both data and power</strong> over the same cable.</p>
+<h2 id="terminology">Terminology<a class="anchor" href="#terminology">#</a></h2>
+<ul>
+<li><strong>USB 1.1 / 2.0 / 3.0 / 3.1 / 3.2 / USB4</strong> — speed and protocol versions.</li>
+<li><strong>Host / Device / OTG</strong> — roles in USB communication.</li>
+<li><strong>Upstream / Downstream</strong> — direction from host to device.</li>
+<li><strong>Type-A / Type-B / Micro / Mini / C</strong> — connector forms.</li>
+<li><strong>DP (Data + Power)</strong> — standard USB wiring for data and VBUS.</li>
+<li><strong>VBUS / GND / D+ / D-</strong> — USB wiring signals.</li>
+<li><strong>Power Delivery (PD)</strong> — USB standard for high-voltage/current power (up to 240W in USB-C).</li>
+</ul>
+<h2 id="practical-use-cases">Practical Use-Cases<a class="anchor" href="#practical-use-cases">#</a></h2>
+<ul>
+<li>Industrial HMI, sensors, and relay engineering access ports.</li>
+<li>Firmware updates and configuration via USB interfaces.</li>
+<li>Data acquisition from lab instruments or field devices.</li>
+<li>Powering low-voltage devices (USB-powered relays, cameras, or sensors).</li>
+<li>Computer peripheral connections (keyboard, mouse, storage, etc.).</li>
+</ul>
+<h2 id="electrical--signaling-characteristics">Electrical &amp; Signaling Characteristics<a class="anchor" href="#electrical--signaling-characteristics">#</a></h2>
+<table>
+  <thead>
+      <tr>
+          <th>USB Version</th>
+          <th>Max Speed</th>
+          <th>Max Cable Length</th>
+          <th>Typical Voltage</th>
+          <th>Typical Connector</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>USB 1.1</td>
+          <td>12 Mbps</td>
+          <td>5 m</td>
+          <td>5 V</td>
+          <td>Type-A / Type-B / Mini / Micro</td>
+      </tr>
+      <tr>
+          <td>USB 2.0</td>
+          <td>480 Mbps</td>
+          <td>5 m</td>
+          <td>5 V</td>
+          <td>Type-A / Type-B / Mini / Micro</td>
+      </tr>
+      <tr>
+          <td>USB 3.x</td>
+          <td>5–20 Gbps</td>
+          <td>3 m</td>
+          <td>5 V</td>
+          <td>Type-A / Type-B / Micro / USB-C</td>
+      </tr>
+      <tr>
+          <td>USB4</td>
+          <td>40 Gbps</td>
+          <td>Up to 2 m</td>
+          <td>5 V</td>
+          <td>USB-C only</td>
+      </tr>
+  </tbody>
+</table>
+<h3 id="key-points">Key Points<a class="anchor" href="#key-points">#</a></h3>
+<ul>
+<li>USB uses <strong>differential signaling (D+/D-)</strong> for data.</li>
+<li>Power is supplied over <strong>VBUS/GND</strong> (typically 5 V, up to 3 A for USB-C PD).</li>
+<li>Supports <strong>hot-plugging</strong>, <strong>enumeration</strong>, and <strong>device class negotiation</strong>.</li>
+<li>USB-C supports <strong>reversible plug</strong>, higher current, and alternate modes (DisplayPort, Thunderbolt).</li>
+</ul>
+<h2 id="configuration--implementation">Configuration &amp; Implementation<a class="anchor" href="#configuration--implementation">#</a></h2>
+<h3 id="best-practices">Best Practices<a class="anchor" href="#best-practices">#</a></h3>
+<ul>
+<li>Use proper USB cables for the speed and power requirements.</li>
+<li>Observe USB polarity (for Type-A/B/Micro) or rely on reversible Type-C.</li>
+<li>Avoid daisy-chaining non-powered hubs for high-current devices.</li>
+<li>Use shielded cables in electrically noisy industrial environments.</li>
+<li>Keep connectors clean and undamaged for reliable enumeration.</li>
+</ul>
+<h3 id="common-pitfalls">Common Pitfalls<a class="anchor" href="#common-pitfalls">#</a></h3>
+<ul>
+<li>Using legacy cables with high-speed devices (USB 2.0 vs 3.x).</li>
+<li>Exceeding cable length limits for data or power.</li>
+<li>Insufficient power supply to devices over USB.</li>
+<li>Connector damage due to repeated insertions or poor alignment.</li>
+<li>Misconfigured device drivers preventing enumeration.</li>
+</ul>
+<h2 id="connector-types">Connector Types<a class="anchor" href="#connector-types">#</a></h2>
+<table>
+  <thead>
+      <tr>
+          <th>Type</th>
+          <th>Description</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>USB-A</td>
+          <td>Standard host connector, rectangular, most common.</td>
+      </tr>
+      <tr>
+          <td>USB-B</td>
+          <td>Device connector, square-ish, used for printers, industrial devices.</td>
+      </tr>
+      <tr>
+          <td>Micro-USB</td>
+          <td>Smaller device connector, widely used in embedded/portable devices.</td>
+      </tr>
+      <tr>
+          <td>Mini-USB</td>
+          <td>Older small device connector.</td>
+      </tr>
+      <tr>
+          <td>USB-C</td>
+          <td>Reversible connector, supports USB 3.x, USB4, and Power Delivery.</td>
+      </tr>
+  </tbody>
+</table>
+<h2 id="troubleshooting--failure-modes">Troubleshooting &amp; Failure Modes<a class="anchor" href="#troubleshooting--failure-modes">#</a></h2>
+<h3 id="symptoms">Symptoms<a class="anchor" href="#symptoms">#</a></h3>
+<ul>
+<li>Device not recognized or enumerated.</li>
+<li>Intermittent connection or frequent disconnects.</li>
+<li>Power delivery failure or insufficient voltage/current.</li>
+<li>Data corruption or low throughput.</li>
+</ul>
+<h3 id="root-causes">Root Causes<a class="anchor" href="#root-causes">#</a></h3>
+<ul>
+<li>Damaged connectors or bent pins.</li>
+<li>Incompatible cable type or poor quality.</li>
+<li>Exceeding USB hub power budget.</li>
+<li>EMI or electrical noise on long cables.</li>
+<li>Driver or firmware incompatibility.</li>
+</ul>
+<h3 id="fixes--workarounds">Fixes / Workarounds<a class="anchor" href="#fixes--workarounds">#</a></h3>
+<ul>
+<li>Replace cable with proper rated cable (USB 2.0 vs 3.x, shielded).</li>
+<li>Inspect and clean connectors.</li>
+<li>Use powered hubs for high-current devices.</li>
+<li>Verify device drivers and firmware.</li>
+<li>Shorten cable length if exceeding maximum allowed distance.</li>
+</ul>
+<h3 id="field-test-methods">Field Test Methods<a class="anchor" href="#field-test-methods">#</a></h3>
+<ul>
+<li>USB protocol analyzer or software enumeration tool</li>
+<li>Multimeter to verify VBUS voltage</li>
+<li>Test with known-good devices and cables</li>
+<li>Oscilloscope for D+/D- differential signal analysis</li>
+</ul>
+<h2 id="standards--references">Standards &amp; References<a class="anchor" href="#standards--references">#</a></h2>
+<ul>
+<li><strong>USB 2.0 / 3.x / 4</strong> — official USB specifications</li>
+<li><strong>USB Implementers Forum (USB-IF)</strong> — connector, cable, and power standards</li>
+<li><strong>IEC 62680</strong> — USB international standard for industrial use</li>
+<li><strong>USB Power Delivery (PD)</strong> — specification for higher-power USB connections</li>
+</ul>
+</article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+<div>
+
+</div>
+
+<div>
+
+</div>
+
+</div>
+
+
+
+  
+
+
+
+  
+  
+  
+  <div class="flex flex-wrap justify-between">
+    <span>
+    
+      <a href="/ports/serial/rs/" class="flex align-center">
+        <img src="/icons/backward.svg" class="book-icon" alt="Backward" />
+        <span>RS</span>
+      </a>
+    
+    </span>
+    <span>
+    
+    </span>
+  </div>
+  
+
+
+ 
+        
+  
+ 
+        
+        
+  
+ 
+        
+  
+  
+    <script>(function(){document.querySelectorAll("pre:has(code)").forEach(e=>{e.addEventListener("click",e.focus),e.addEventListener("copy",function(t){if(t.preventDefault(),navigator.clipboard){const t=window.getSelection().toString()||e.textContent;navigator.clipboard.writeText(t)}})})})()</script>
+  
+
+      </footer>
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+  
+  <aside class="book-toc">
+    <div class="book-toc-content">
+      
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#overview">Overview</a></li>
+    <li><a href="#terminology">Terminology</a></li>
+    <li><a href="#practical-use-cases">Practical Use-Cases</a></li>
+    <li><a href="#electrical--signaling-characteristics">Electrical &amp; Signaling Characteristics</a>
+      <ul>
+        <li><a href="#key-points">Key Points</a></li>
+      </ul>
+    </li>
+    <li><a href="#configuration--implementation">Configuration &amp; Implementation</a>
+      <ul>
+        <li><a href="#best-practices">Best Practices</a></li>
+        <li><a href="#common-pitfalls">Common Pitfalls</a></li>
+      </ul>
+    </li>
+    <li><a href="#connector-types">Connector Types</a></li>
+    <li><a href="#troubleshooting--failure-modes">Troubleshooting &amp; Failure Modes</a>
+      <ul>
+        <li><a href="#symptoms">Symptoms</a></li>
+        <li><a href="#root-causes">Root Causes</a></li>
+        <li><a href="#fixes--workarounds">Fixes / Workarounds</a></li>
+        <li><a href="#field-test-methods">Field Test Methods</a></li>
+      </ul>
+    </li>
+    <li><a href="#standards--references">Standards &amp; References</a></li>
+  </ul>
+</nav>
+
+
+
+    </div>
+  </aside>
+  
+ 
+  </main>
+
+  
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
