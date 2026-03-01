@@ -49,8 +49,8 @@ async function runSearch(rawQuery) {
 
 async function searchItunes(query) {
   const [albums, songs] = await Promise.all([
-    fetchItunesEntity(query, "album", 6),
-    fetchItunesEntity(query, "song", 10),
+    fetchItunesEntity(query, "album", 5),
+    fetchItunesEntity(query, "song", 5),
   ]);
 
   return { albums, songs };

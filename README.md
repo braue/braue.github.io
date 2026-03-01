@@ -8,6 +8,7 @@ This repository now hosts **Music Downloader**, a progressive web app that surfa
 - Song.link integration for Tidal and Amazon Music URLs.
 - “Download on Lucida” button that automatically enables only when a streaming link is present.
 - Web App Manifest so Safari/Chrome can add it to the home screen.
+- Searches now return the top five albums and the top five songs for a query, keeping the most relevant results while reducing Song.link calls.
 
 ## Testing locally
 
