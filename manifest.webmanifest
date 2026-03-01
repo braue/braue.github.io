@@ -1,0 +1,23 @@
+{
+  "name": "Music Downloader",
+  "short_name": "MusicDownloader",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#02040a",
+  "theme_color": "#081f42",
+  "description": "Music Downloader surfaces top albums and songs with Tidal and Amazon Music links.",
+  "icons": [
+    {
+      "src": "/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
