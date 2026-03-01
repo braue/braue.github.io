@@ -1,0 +1,4 @@
+name = "songlink-proxy"
+main = "worker.js"
+compatibility_date = "2025-01-01"
+account_id = "63ca347e5b86c65773b86e010d220185"

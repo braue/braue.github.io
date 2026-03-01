@@ -3,6 +3,7 @@ const queryInput = document.getElementById("query");
 const resultsEl = document.getElementById("results");
 const statusEl = document.getElementById("status");
 let latestSearchId = 0;
+const SONG_LINK_PROXY_URL = (window.SONGLINK_PROXY_URL || "").trim();
 
 searchForm.addEventListener("submit", async (event) => {
   event.preventDefault();
@@ -104,10 +105,11 @@ function buildItem(entity, item) {
 }
 
 async function fetchLinks(sourceUrl) {
+  if (!SONG_LINK_PROXY_URL) {
+    throw new Error("Song.link proxy not configured. Add window.SONGLINK_PROXY_URL in config.js.");
+  }
   try {
-    const url = `https://api.song.link/v1-alpha.1/links?url=${encodeURIComponent(
-      sourceUrl
-    )}&userCountry=US`;
+    const url = `${SONG_LINK_PROXY_URL}?url=${encodeURIComponent(sourceUrl)}&userCountry=US`;
     const response = await fetch(url);
     if (!response.ok) {
       return { tidal: null, amazon: null };

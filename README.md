@@ -27,3 +27,9 @@ This repository now hosts **Music Downloader**, a progressive web app that surfa
 
 - The iTunes Search and Song.link APIs are hit directly from the browser, so you do not need a server-side component.
 - To update the app, push a new commit to GitHub (or run `git push`), and GitHub Pages will refresh the hosted copy instantly—no action required on your dad’s phone.
+
+## Configuring the Song.link proxy
+
+1. Deploy the sample worker in `workers/songlink-proxy` (or host a similar endpoint) so it can safely attach your Song.link API key (if you have one) and forward the JSON payload. The worker README includes a minimal Cloudflare Wrangler setup plus instructions for `wrangler secret put SONGLINK_API_KEY`.
+2. Edit `config.js` so `window.SONGLINK_PROXY_URL` equals your worker’s URL (e.g., `https://my-songlink-proxy.workers.dev`). This script loads before `main.js`, so the client can read the proxy URL at runtime.
+3. Commit the updated `config.js` and push. The PWA on GitHub Pages will then call your proxy instead of hitting Song.link directly, and the Tidal/Amazon chips should populate again (expect the public rate limit if no API key is configured on the worker).
