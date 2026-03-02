@@ -26,8 +26,15 @@ This repository now hosts **Music Downloader**, a progressive web app that surfa
 
 ## Notes
 
-- The iTunes Search and Song.link APIs are hit directly from the browser, so you do not need a server-side component.
+- The iTunes Search flow will call `window.ITUNES_PROXY_URL` when it’s set (leave it empty to hit Apple directly). Deploy and configure the proxy worker in `workers/itunes-proxy` so you can route around blockers, then update `config.js` with its domain before pushing.
+- Song.link already requires a proxy worker; follow the steps in `workers/songlink-proxy/README.md` and keep `window.SONGLINK_PROXY_URL` pointing at that domain.
 - To update the app, push a new commit to GitHub (or run `git push`), and GitHub Pages will refresh the hosted copy instantly—no action required on your dad’s phone.
+
+## Configuring the iTunes proxy
+
+1. Deploy the worker in `workers/itunes-proxy` (see that folder’s README for the basic Wrangler workflow). The script proxies the `term`, `entity`, `limit`, and other query parameters straight to `https://itunes.apple.com/search` while adding CORS headers.
+2. Update `config.js` so `window.ITUNES_PROXY_URL` points at the worker’s domain (e.g., `https://itunes-search-proxy.your-subdomain.workers.dev`) and push the change.
+3. Your GitHub Pages build will now load the proxy URL before `main.js`, and every search will hit your worker instead of calling Apple directly.
 
 ## Configuring the Song.link proxy
 

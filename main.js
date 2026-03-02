@@ -4,6 +4,7 @@ const resultsEl = document.getElementById("results");
 const statusEl = document.getElementById("status");
 let latestSearchId = 0;
 const SONG_LINK_PROXY_URL = (window.SONGLINK_PROXY_URL || "").trim();
+const ITUNES_PROXY_URL = (window.ITUNES_PROXY_URL || "").trim();
 
 searchForm.addEventListener("submit", async (event) => {
   event.preventDefault();
@@ -57,9 +58,7 @@ async function searchItunes(query) {
 }
 
 async function fetchItunesEntity(query, entity, limit) {
-  const response = await fetch(
-    `https://itunes.apple.com/search?term=${encodeURIComponent(query)}&media=music&entity=${entity}&limit=${limit}`
-  );
+  const response = await fetch(buildItunesUrl(query, entity, limit));
 
   if (!response.ok) {
     throw new Error("Unable to reach the music service.");
@@ -83,6 +82,21 @@ async function fetchItunesEntity(query, entity, limit) {
       };
     })
   );
+}
+
+function buildItunesUrl(query, entity, limit) {
+  const params = new URLSearchParams({
+    term: query,
+    media: "music",
+    entity,
+    limit: String(limit),
+  });
+
+  if (ITUNES_PROXY_URL) {
+    return `${ITUNES_PROXY_URL}?${params.toString()}`;
+  }
+
+  return `https://itunes.apple.com/search?${params.toString()}`;
 }
 
 function buildItem(entity, item) {
