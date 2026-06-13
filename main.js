@@ -5,16 +5,14 @@ const statusEl = document.getElementById("status");
 let latestSearchId = 0;
 const SONG_LINK_PROXY_URL = (window.SONGLINK_PROXY_URL || "").trim();
 const ITUNES_PROXY_URL = (window.ITUNES_PROXY_URL || "").trim();
+const ITUNES_SEARCH_URL = "https://itunes.apple.com/search";
+const DEEZER_SEARCH_URL = "https://api.deezer.com/search";
+const SHOULD_PREFER_ITUNES_PROXY = shouldPreferItunesProxy();
+let deezerCallbackId = 0;
 
 searchForm.addEventListener("submit", async (event) => {
   event.preventDefault();
   await runSearch(queryInput.value);
-});
-
-queryInput.addEventListener("keydown", (event) => {
-  if (event.key === "Enter" && queryInput.value.trim()) {
-    event.preventDefault();
-  }
 });
 
 async function runSearch(rawQuery) {
@@ -32,7 +30,7 @@ async function runSearch(rawQuery) {
   resultsEl.innerHTML = "";
 
   try {
-    const { albums, songs } = await searchItunes(query);
+    const { albums, songs } = await searchMusic(query);
     if (searchId !== latestSearchId) return;
 
     const hasResults = albums.length || songs.length;
@@ -48,27 +46,44 @@ async function runSearch(rawQuery) {
   }
 }
 
-async function searchItunes(query) {
+async function searchMusic(query) {
   const [albums, songs] = await Promise.all([
-    fetchItunesEntity(query, "album", 5),
-    fetchItunesEntity(query, "song", 5),
+    fetchMusicEntity(query, "album", 5),
+    fetchMusicEntity(query, "song", 5),
   ]);
 
   return { albums, songs };
 }
 
-async function fetchItunesEntity(query, entity, limit) {
-  const response = await fetch(buildItunesUrl(query, entity, limit));
+async function fetchMusicEntity(query, entity, limit) {
+  for (const url of buildItunesUrls(query, entity, limit)) {
+    try {
+      const response = await fetch(url);
+      if (!response.ok) {
+        continue;
+      }
 
-  if (!response.ok) {
-    throw new Error("Unable to reach the music service.");
+      const data = await response.json();
+      const items = (data.results || [])
+        .map((item) => buildItem(entity, item))
+        .filter(Boolean);
+
+      return enrichItemsWithLinks(items);
+    } catch {
+      // Try the next available music search endpoint.
+    }
   }
 
-  const data = await response.json();
-  const items = (data.results || [])
-    .map((item) => buildItem(entity, item))
-    .filter(Boolean);
+  try {
+    return enrichItemsWithLinks(await fetchDeezerEntity(query, entity, limit));
+  } catch {
+    // Keep the existing user-facing search error below.
+  }
 
+  throw new Error("Unable to reach the music service.");
+}
+
+async function enrichItemsWithLinks(items) {
   return Promise.all(
     items.map(async (item) => {
       const links = await fetchLinks(item.sourceUrl);
@@ -84,19 +99,31 @@ async function fetchItunesEntity(query, entity, limit) {
   );
 }
 
-function buildItunesUrl(query, entity, limit) {
+function buildItunesUrls(query, entity, limit) {
   const params = new URLSearchParams({
     term: query,
+    country: "US",
     media: "music",
     entity,
     limit: String(limit),
   });
+  const queryString = params.toString();
+  const directUrl = `${ITUNES_SEARCH_URL}?${queryString}`;
 
-  if (ITUNES_PROXY_URL) {
-    return `${ITUNES_PROXY_URL}?${params.toString()}`;
+  if (!ITUNES_PROXY_URL) {
+    return [directUrl];
   }
 
-  return `https://itunes.apple.com/search?${params.toString()}`;
+  const proxyUrl = `${ITUNES_PROXY_URL}?${queryString}`;
+  return SHOULD_PREFER_ITUNES_PROXY
+    ? [proxyUrl, directUrl]
+    : [directUrl, proxyUrl];
+}
+
+function shouldPreferItunesProxy() {
+  const userAgent = navigator.userAgent || "";
+  const isTouchMac = navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1;
+  return /iP(hone|ad|od)/.test(userAgent) || isTouchMac;
 }
 
 function buildItem(entity, item) {
@@ -116,6 +143,71 @@ function buildItem(entity, item) {
     artwork: item.artworkUrl100?.replace("100x100bb.jpg", "300x300bb.jpg"),
     sourceUrl,
   };
+}
+
+async function fetchDeezerEntity(query, entity, limit) {
+  const deezerEntity = entity === "album" ? "album" : "track";
+  const params = new URLSearchParams({
+    q: query,
+    limit: String(limit),
+    output: "jsonp",
+  });
+  const data = await fetchJsonp(`${DEEZER_SEARCH_URL}/${deezerEntity}`, params);
+  return (data.data || [])
+    .map((item) => buildDeezerItem(entity, item))
+    .filter(Boolean);
+}
+
+function buildDeezerItem(entity, item) {
+  const artistName = item.artist?.name;
+  const name = entity === "album" ? item.title : item.title_short || item.title;
+  const sourceUrl = item.link;
+  if (!artistName || !name || !sourceUrl) {
+    return null;
+  }
+
+  return {
+    id: `deezer-${entity}-${item.id}`,
+    name,
+    artist: artistName,
+    type: entity,
+    artwork:
+      entity === "album"
+        ? item.cover_medium || item.cover_big
+        : item.album?.cover_medium || item.album?.cover_big,
+    sourceUrl,
+  };
+}
+
+function fetchJsonp(baseUrl, params) {
+  return new Promise((resolve, reject) => {
+    deezerCallbackId += 1;
+    const callbackName = `__musicDownloaderJsonp${deezerCallbackId}`;
+    const script = document.createElement("script");
+    const timeoutId = window.setTimeout(() => {
+      cleanup();
+      reject(new Error("Music catalog fallback timed out."));
+    }, 10000);
+
+    function cleanup() {
+      window.clearTimeout(timeoutId);
+      delete window[callbackName];
+      script.remove();
+    }
+
+    window[callbackName] = (data) => {
+      cleanup();
+      resolve(data);
+    };
+
+    params.set("callback", callbackName);
+    script.onerror = () => {
+      cleanup();
+      reject(new Error("Music catalog fallback failed."));
+    };
+    script.src = `${baseUrl}?${params.toString()}`;
+    document.head.appendChild(script);
+  });
 }
 
 async function fetchLinks(sourceUrl) {
