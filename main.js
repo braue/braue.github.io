@@ -87,13 +87,12 @@ async function enrichItemsWithLinks(items) {
   return Promise.all(
     items.map(async (item) => {
       const links = await fetchLinks(item.sourceUrl);
-      const primaryLink = links.tidal || links.amazon;
+      const primaryLink =
+        links.tidal || links.qobuz || links.deezer || links.amazon || item.sourceUrl;
       return {
         ...item,
         ...links,
-        lucida: primaryLink
-          ? `https://lucida.to/?url=${encodeURIComponent(primaryLink)}`
-          : null,
+        lucida: `https://lucida.to/?url=${encodeURIComponent(primaryLink)}`,
       };
     })
   );
@@ -225,10 +224,12 @@ async function fetchLinks(sourceUrl) {
     const links = data.linksByPlatform || {};
     return {
       tidal: links.tidal?.url || null,
+      qobuz: links.qobuz?.url || null,
+      deezer: links.deezer?.url || null,
       amazon: links.amazonMusic?.url || null,
     };
   } catch {
-    return { tidal: null, amazon: null };
+    return { tidal: null, qobuz: null, deezer: null, amazon: null };
   }
 }
 
