@@ -1,0 +1,12 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex"><title>Ask</title>
+<style>body{font:15px system-ui,sans-serif;margin:40px 16px;color:#555;background:#fff}
+@media (prefers-color-scheme:dark){body{color:#aaa;background:#161615}}a{color:#6fa0d0}</style></head>
+<body><p id="m">Connecting…</p>
+<script>
+fetch('url.json?t=' + Date.now(), { cache: 'no-store' })
+  .then((r) => r.json())
+  .then((j) => { location.replace(j.url); })
+  .catch(() => { document.getElementById('m').textContent = 'Ask is offline.'; });
+</script></body></html>
